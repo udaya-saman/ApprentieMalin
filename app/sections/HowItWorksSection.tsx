@@ -111,7 +111,7 @@ const HowItWorksSection = () => {
 };
 
 // Helper function to position elements in a circle
-const getCircularPosition = (index, total) => {
+const getCircularPosition = (index: number, total: number) => {
 	// Calculate angle based on index and total number of items
 	// Start from the top (-90 degrees or -π/2 radians) and go clockwise
 	const angleStep = (2 * Math.PI) / total;

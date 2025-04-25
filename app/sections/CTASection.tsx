@@ -19,7 +19,7 @@ const CTASection = () => {
 				type: 'spring',
 				stiffness: 80,
 				damping: 15,
-				staggerChildren: 0.2,
+				staggerChildren: 0.3,
 				delayChildren: 0.3,
 			},
 		},
@@ -126,7 +126,32 @@ const CTASection = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 							className='btn btn-primary'
-							variants={buttonVariants}
+							variants={{
+								hidden: { opacity: 0, scale: 0.9, y: 20 },
+								visible: {
+									opacity: 1,
+									scale: 1,
+									y: 0,
+									transition: {
+										type: 'spring',
+										stiffness: 120,
+										damping: 15,
+										delay: 0.8,
+									},
+								},
+								hover: {
+									scale: 1.05,
+									boxShadow: '0 0 15px rgba(59, 130, 246, 0.6)',
+									transition: {
+										type: 'spring',
+										stiffness: 400,
+										damping: 10,
+									},
+								},
+								tap: {
+									scale: 0.98,
+								},
+							}}
 							whileHover='hover'
 							whileTap='tap'>
 							Chat on WhatsApp

@@ -81,8 +81,9 @@ const HeroSection = () => {
 		visible: {
 			opacity: 1,
 			transition: {
-				staggerChildren: 0.2,
+				staggerChildren: 0.25,
 				delayChildren: 0.3,
+				duration: 0.8,
 			},
 		},
 	};
@@ -102,7 +103,7 @@ const HeroSection = () => {
 			opacity: 1,
 			scale: 1,
 			rotate: 0,
-			transition: { type: 'spring', stiffness: 80, damping: 15, delay: 0.5 },
+			transition: { type: 'spring', stiffness: 80, damping: 15, delay: 1.0 },
 		},
 	};
 
@@ -165,10 +166,14 @@ const HeroSection = () => {
 
 							<motion.div
 								variants={itemVariants}
+								transition={{ delay: 0.6 }}
 								className='flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4'>
 								<motion.div
 									whileHover={{ scale: 1.05 }}
-									whileTap={{ scale: 0.95 }}>
+									whileTap={{ scale: 0.95 }}
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ delay: 0.8 }}>
 									<Link href='#get-started' className='btn btn-primary'>
 										Get Started for Free
 									</Link>
@@ -176,7 +181,10 @@ const HeroSection = () => {
 
 								<motion.div
 									whileHover={{ scale: 1.05 }}
-									whileTap={{ scale: 0.95 }}>
+									whileTap={{ scale: 0.95 }}
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ delay: 1.0 }}>
 									<Link href='#how-it-works' className='btn btn-secondary'>
 										How It Works
 									</Link>
@@ -241,7 +249,7 @@ const HeroSection = () => {
 											alt='AI Assistant'
 											width={450}
 											height={450}
-											priority
+											priority={false}
 											className='w-full h-auto'
 											style={{
 												objectFit: 'contain',

@@ -1,67 +1,71 @@
-# ApprentieMalin - AI-Powered Academic Support Platform
+# ApprentieMalin AI Tutor
 
-ApprentieMalin is an AI-powered academic support platform designed for primary and middle school students. The platform offers smart, fun, and personalized learning support through WhatsApp integration.
+ApprentieMalin is an AI-powered educational platform that connects students with instant, personalized academic support through WhatsApp. Our AI tutor helps primary and middle school students build confidence and excel in their studies with 24/7 homework assistance.
 
 ## Features
 
-- 24/7 Learning Help via WhatsApp
-- Friendly AI Tutor for students
-- Curriculum-Aligned Responses
-- Instant Explanations & Practice
-- Safe for Children
-- Multilingual Support
+- **Academic Support**: Instant homework help and explanations for complex topics available 24/7, with responses in under 2 minutes.
+- **WhatsApp Integration**: Access tutoring directly through WhatsApp—no new apps to download, just message and learn immediately.
+- **Curriculum-Aligned**: All content follows official educational standards for primary and middle school subjects across multiple disciplines.
 
-## Technologies Used
+## Technology Stack
 
 - Next.js
+- React
 - TypeScript
 - TailwindCSS
 - Framer Motion
-- Swiper.js
-- React Intersection Observer
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18.0.0 or newer
+- Node.js (v14 or later)
 - npm or yarn
 
 ### Installation
 
 1. Clone the repository
 
-```bash
-git clone https://github.com/yourusername/apprentiemalin.git
-cd apprentiemalin
-```
+   ```
+   git clone https://github.com/username/apprentiemalin-ai-tutor.git
+   ```
 
-2. Install dependencies
+2. Navigate to the project directory
 
-```bash
-npm install
-# or
-yarn install
-```
+   ```
+   cd apprentiemalin-ai-tutor
+   ```
 
-3. Run the development server
+3. Install dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+   ```
+   npm install
+   ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+   or
 
-## Project Structure
+   ```
+   yarn install
+   ```
 
-- `app/` - Next.js app directory
-  - `components/` - Reusable UI components
-  - `sections/` - Page sections
-  - `page.tsx` - Main page component
-  - `layout.tsx` - Root layout
-  - `globals.css` - Global styles
+4. Start the development server
+
+   ```
+   npm run dev
+   ```
+
+   or
+
+   ```
+   yarn dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+## Deployment
+
+This project can be deployed on Vercel or any other hosting platform that supports Next.js applications.
 
 ## License
 

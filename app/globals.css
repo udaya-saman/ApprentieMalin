@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		@apply scroll-smooth;
+	}
+
+	body {
+		@apply min-h-screen overflow-x-hidden bg-background-dark text-white;
+	}
+}
+
+@layer components {
+	.container {
+		@apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+	}
+
+	.btn {
+		@apply inline-flex items-center justify-center px-6 py-3 rounded-full font-medium transition-all duration-300;
+	}
+
+	.btn-primary {
+		@apply bg-blue-500 text-white hover:bg-blue-600 shadow-md hover:shadow-lg;
+	}
+
+	.btn-secondary {
+		@apply bg-whiteAlpha-100 text-white hover:bg-whiteAlpha-200 border border-whiteAlpha-200;
+	}
+
+	/* Button styles for blue sections */
+	.section-blue .btn-primary {
+		@apply bg-white text-[#212121] hover:bg-gray-100 shadow-md hover:shadow-lg;
+	}
+
+	.section-blue .btn-secondary {
+		@apply bg-transparent text-white hover:bg-white/10 border border-white;
+	}
+
+	.card {
+		@apply bg-navy-50 rounded-lg p-6 border border-whiteAlpha-100;
+	}
+
+	.glass-card {
+		@apply bg-whiteAlpha-50 backdrop-blur-sm rounded-lg p-6 border border-whiteAlpha-100;
+	}
+
+	/* Section styles with alternating backgrounds */
+	.section {
+		@apply py-20;
+	}
+
+	.section-blue {
+		background: linear-gradient(135deg, #0062e7 0%, #00a3ff 100%);
+		color: white;
+	}
+
+	.section-white {
+		@apply bg-white text-blue-900;
+	}
+
+	.section-title {
+		@apply text-3xl md:text-4xl font-bold mb-6;
+	}
+
+	.section-subtitle {
+		@apply text-lg mb-10 max-w-2xl mx-auto;
+	}
+
+	.section-white .section-subtitle {
+		@apply text-blue-900/70;
+	}
+
+	.section-blue .section-subtitle {
+		@apply text-white/80;
+	}
+
+	.text-gradient {
+		@apply text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal;
+	}
+
+	.glowing-circle {
+		@apply absolute rounded-full blur-3xl opacity-30 pointer-events-none;
+	}
+
+	/* Cards for white sections */
+	.section-white .card {
+		@apply bg-white shadow-md border border-blue-100;
+	}
+
+	/* Cards for blue sections */
+	.section-blue .card {
+		@apply bg-blue-600/30 border border-white/10;
+	}
+}
+
+/* Swiper simple styles */
+.swiper-pagination-bullet {
+	@apply bg-whiteAlpha-300 !important;
+}
+
+.swiper-pagination-bullet-active {
+	@apply bg-blue-500 !important;
+}

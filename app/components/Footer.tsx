@@ -1,9 +1,19 @@
 import Link from 'next/link';
 
+interface FooterLink {
+  name: string;
+  href: string;
+}
+
+interface FooterColumn {
+  title: string;
+  links: FooterLink[];
+}
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
-  const footerLinks = [
+  const footerLinks: FooterColumn[] = [
     {
       title: 'Platform',
       links: [
@@ -32,11 +42,33 @@ const Footer = () => {
     },
   ];
 
+  const renderFooterLink = (link: FooterLink) => (
+    <li key={link.name}>
+      <Link 
+        href={link.href} 
+        className="text-sm text-white/60 hover:text-white hover:underline transition-colors duration-200"
+      >
+        {link.name}
+      </Link>
+    </li>
+  );
+
+  const renderFooterColumn = (column: FooterColumn) => (
+    <div key={column.title}>
+      <h3 className="mb-5 text-sm font-semibold uppercase tracking-wider text-white/90">
+        {column.title}
+      </h3>
+      <ul className="space-y-3">
+        {column.links.map(renderFooterLink)}
+      </ul>
+    </div>
+  );
+
   return (
     <footer className="relative bg-blue-900/80 text-white pt-20 pb-10 mt-20 border-t border-white/10">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 mb-12">
-          {/* Logo and description - increased bottom margin */}
+          {/* Logo and description */}
           <div className="lg:col-span-1 mb-6 md:mb-0">
             <Link href="/" className="inline-block mb-5">
               <span className="text-2xl font-bold gradient-text">ApprentiMalin</span>
@@ -47,29 +79,11 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Links - Adjusted spacing and title style */}
-          {footerLinks.map((column) => (
-            <div key={column.title}>
-              <h3 className="mb-5 text-sm font-semibold uppercase tracking-wider text-white/90">
-                {column.title}
-              </h3>
-              <ul className="space-y-3"> {/* Increased space between links */}
-                {column.links.map((link) => (
-                  <li key={link.name}>
-                    <Link 
-                      href={link.href} 
-                      className="text-sm text-white/60 hover:text-white hover:underline transition-colors duration-200"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Links */}
+          {footerLinks.map(renderFooterColumn)}
         </div>
         
-        {/* Bottom section - Adjusted padding and spacing */}
+        {/* Bottom section */}
         <div className="mt-12 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
             <p className="text-sm text-white/60 mb-4 md:mb-0">

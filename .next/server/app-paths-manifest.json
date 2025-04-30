@@ -1,3 +1,4 @@
 {
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/features/whatsapp-chat/page": "app/features/whatsapp-chat/page.js"
 }

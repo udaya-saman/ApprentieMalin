@@ -4,17 +4,19 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
+interface NavLink {
+	name: string;
+	href: string;
+	onClick?: (e: React.MouseEvent) => void;
+}
+
 const Header = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
-			if (window.scrollY > 10) {
-				setIsScrolled(true);
-			} else {
-				setIsScrolled(false);
-			}
+			setIsScrolled(window.scrollY > 10);
 		};
 
 		window.addEventListener('scroll', handleScroll);
@@ -25,7 +27,6 @@ const Header = () => {
 		setIsMobileMenuOpen(!isMobileMenuOpen);
 	};
 
-	// Add smooth scroll handler for Home link
 	const handleHomeClick = (e: React.MouseEvent) => {
 		e.preventDefault();
 		window.scrollTo({
@@ -37,7 +38,7 @@ const Header = () => {
 		}
 	};
 
-	const navLinks = [
+	const navLinks: NavLink[] = [
 		{ name: 'Home', href: '#', onClick: handleHomeClick },
 		{ name: 'About', href: '#about' },
 		{ name: 'How It Works', href: '#how-it-works' },
@@ -45,6 +46,22 @@ const Header = () => {
 		{ name: 'Testimonials', href: '#testimonials' },
 		{ name: 'FAQ', href: '#faq' },
 	];
+
+	const renderNavLink = (link: NavLink, isMobile = false) => (
+		<Link
+			key={link.name}
+			href={link.href}
+			onClick={link.onClick || (isMobile ? toggleMobileMenu : undefined)}
+			className={`${
+				isMobile ? 'text-xl' : 'text-sm'
+			} font-medium transition-all duration-300 ${
+				link.name === 'Home'
+					? 'text-white hover:text-primary hover:scale-105'
+					: 'text-white/80 hover:text-white'
+			}`}>
+			{link.name}
+		</Link>
+	);
 
 	return (
 		<header
@@ -66,19 +83,7 @@ const Header = () => {
 
 				{/* Desktop Navigation */}
 				<nav className='hidden md:flex items-center space-x-8'>
-					{navLinks.map((link) => (
-						<Link
-							key={link.name}
-							href={link.href}
-							onClick={link.onClick}
-							className={`text-sm font-medium transition-all duration-300 ${
-								link.name === 'Home'
-									? 'text-white hover:text-primary hover:scale-105'
-									: 'text-white/80 hover:text-white'
-							}`}>
-							{link.name}
-						</Link>
-					))}
+					{navLinks.map((link) => renderNavLink(link))}
 					<Link
 						href='#get-started'
 						className='btn text-sm bg-blue-500 text-white hover:bg-blue-600 border border-white'>
@@ -115,19 +120,7 @@ const Header = () => {
 						className='fixed inset-0 z-40 bg-background-dark/95 backdrop-blur-lg md:hidden'>
 						<div className='flex flex-col items-center justify-center h-full'>
 							<nav className='flex flex-col items-center space-y-6'>
-								{navLinks.map((link) => (
-									<Link
-										key={link.name}
-										href={link.href}
-										className={`text-xl font-medium transition-all duration-300 ${
-											link.name === 'Home'
-												? 'text-white hover:text-primary hover:scale-105'
-												: 'text-white/80 hover:text-white'
-										}`}
-										onClick={link.onClick || toggleMobileMenu}>
-										{link.name}
-									</Link>
-								))}
+								{navLinks.map((link) => renderNavLink(link, true))}
 								<Link
 									href='#get-started'
 									className='btn text-lg mt-4 bg-blue-500 text-white hover:bg-blue-600 border border-white'

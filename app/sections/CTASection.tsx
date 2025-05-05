@@ -1,5 +1,6 @@
 'use client';
 
+// Force Vercel to recognize the latest version - no inline styles
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Section from '../components/ui/Section';

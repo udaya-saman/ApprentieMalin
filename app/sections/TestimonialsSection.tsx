@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import type { SwiperRef } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { useRef, useState, useEffect } from 'react';
 import Section from '../components/ui/Section';
@@ -16,7 +17,7 @@ import 'swiper/css/pagination';
 const TestimonialsSection = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [isClient, setIsClient] = useState(false);
-	const swiperRef = useRef(null);
+	const swiperRef = useRef<SwiperRef>(null);
 	const totalSlides = config.testimonials.length;
 
 	useEffect(() => {

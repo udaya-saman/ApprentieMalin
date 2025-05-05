@@ -1,165 +1,119 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import Link from 'next/link';
+import Image from 'next/image';
+import Section from '../components/ui/Section';
+import Button from '../components/ui/Button';
 
 const CTASection = () => {
-	const [ref, inView] = useInView({
-		triggerOnce: true,
-		threshold: 0.1,
-	});
-
+	// Animation variants
 	const containerVariants = {
-		hidden: { opacity: 0, scale: 0.95 },
+		hidden: { opacity: 0 },
 		visible: {
 			opacity: 1,
-			scale: 1,
 			transition: {
-				type: 'spring',
-				stiffness: 80,
-				damping: 15,
-				staggerChildren: 0.3,
-				delayChildren: 0.3,
+				staggerChildren: 0.1,
+				delayChildren: 0.1,
 			},
 		},
 	};
 
 	const itemVariants = {
 		hidden: { opacity: 0, y: 20 },
-		visible: {
-			opacity: 1,
-			y: 0,
-			transition: {
-				type: 'spring',
-				stiffness: 100,
-				damping: 15,
-			},
-		},
+		visible: { opacity: 1, y: 0 },
 	};
 
-	const buttonVariants = {
-		hidden: { opacity: 0, scale: 0.9 },
-		visible: {
-			opacity: 1,
-			scale: 1,
+	const glowVariants = {
+		initial: { scale: 1, opacity: 0.2 },
+		animate: {
+			scale: [1, 1.5, 1],
+			opacity: [0.2, 0.4, 0.2],
 			transition: {
-				type: 'spring',
-				stiffness: 120,
-				damping: 15,
-				delay: 0.5,
-			},
-		},
-		hover: {
-			scale: 1.05,
-			boxShadow: '0 0 15px rgba(59, 130, 246, 0.6)',
-			transition: {
-				type: 'spring',
-				stiffness: 400,
-				damping: 10,
-			},
-		},
-		tap: {
-			scale: 0.98,
-		},
+				duration: 2,
+				repeat: Infinity,
+				ease: "easeInOut"
+			}
+		}
 	};
 
 	return (
-		<section id='get-started' className='py-20 pt-14 section-blue relative'>
-			<div className='container'>
+		<Section
+			id='get-started'
+			variant='blue'
+			className='relative overflow-hidden min-h-screen flex items-center justify-center'
+			style={{ background: 'linear-gradient(135deg, #0071ed 0%, #00a2ff 100%)' }}>
+			<div className='relative z-10 max-w-4xl mx-auto px-4 py-8 -mt-[60px] scale-90 text-center'>
 				<motion.div
-					ref={ref}
-					initial='hidden'
-					animate={inView ? 'visible' : 'hidden'}
 					variants={containerVariants}
-					className='relative max-w-5xl mx-auto rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20'>
-					{/* Content */}
-					<div className='relative p-8 md:p-16 flex flex-col items-center text-center'>
-						<motion.div
-							className='flex justify-center mb-6'
-							variants={itemVariants}>
-							<motion.div
-								className='w-16 h-16 rounded-full bg-white/10 flex items-center justify-center'
-								whileHover={{ scale: 1.1, rotate: 5 }}
-								animate={{
-									boxShadow: [
-										'0 0 0 rgba(255, 255, 255, 0)',
-										'0 0 20px rgba(255, 255, 255, 0.3)',
-										'0 0 0 rgba(255, 255, 255, 0)',
-									],
-								}}
-								transition={{
-									boxShadow: {
-										duration: 2,
-										repeat: Infinity,
-									},
-								}}>
-								<motion.span
-									className='text-3xl'
-									animate={{ rotate: [0, 10, 0, -10, 0] }}
-									transition={{
-										duration: 5,
-										repeat: Infinity,
-										repeatType: 'loop',
+					initial='hidden'
+					whileInView='visible'
+					viewport={{ once: true }}
+					className='flex flex-col items-center'>
+					{/* Rocket Icon with expanding glow effect */}
+					<motion.div
+						variants={itemVariants}
+						className='mb-8 relative'>
+						<div className='w-16 h-16 text-4xl flex items-center justify-center relative'>
+							<motion.div 
+								className='absolute inset-0 bg-white/20 rounded-full blur-xl'
+								variants={glowVariants}
+								initial="initial"
+								animate="animate"
+							></motion.div>
+							<div className='relative'>
+								<span 
+									role="img" 
+									aria-label="rocket" 
+									className="animate-bounce relative z-10 text-5xl"
+									style={{ 
+										filter: 'drop-shadow(0 0 15px rgba(255,255,255,0.5))',
+										textShadow: '0 0 20px rgba(255,255,255,0.5)'
 									}}>
 									🚀
-								</motion.span>
-							</motion.div>
+								</span>
+							</div>
+						</div>
+					</motion.div>
+
+					{/* CTA content */}
+					<motion.div variants={itemVariants} className="w-full">
+						<h2 className='text-4xl md:text-5xl font-bold mb-6 text-white'>
+							Ready to Transform Learning?
+						</h2>
+						<p className='text-xl text-white/90 mb-8 max-w-2xl mx-auto'>
+							Join thousands of students who are already experiencing smarter, more engaging
+							learning with ApprentieMalin's AI tutor on WhatsApp.
+						</p>
+						<motion.div variants={itemVariants} className="flex flex-col items-center gap-4">
+							<Button
+								href='#'
+								variant='primary'
+								className='bg-white text-[#0071ed] hover:bg-blue-50 font-medium text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2'>
+								<Image 
+									src="/whatsapp.svg" 
+									alt="WhatsApp icon" 
+									width={24} 
+									height={24} 
+								/>
+								Chat on WhatsApp
+							</Button>
 						</motion.div>
-
-						<motion.h2
-							className='text-3xl md:text-4xl font-bold mb-6'
-							variants={itemVariants}>
-							Ready to Transform <span className='gradient-text'>Learning</span>
-							?
-						</motion.h2>
-
-						<motion.p
-							className='text-lg text-white/80 max-w-2xl mb-8'
-							variants={itemVariants}>
-							Join thousands of students who are already experiencing smarter,
-							more engaging learning with ApprentieMalin's AI tutor on WhatsApp.
-						</motion.p>
-
-						<motion.a
-							href='https://wa.me/15551234567'
-							target='_blank'
-							rel='noopener noreferrer'
-							className='btn btn-primary'
-							variants={{
-								hidden: { opacity: 0, scale: 0.9, y: 20 },
-								visible: {
-									opacity: 1,
-									scale: 1,
-									y: 0,
-									transition: {
-										type: 'spring',
-										stiffness: 120,
-										damping: 15,
-										delay: 0.8,
-									},
-								},
-								hover: {
-									scale: 1.05,
-									boxShadow: '0 0 15px rgba(59, 130, 246, 0.6)',
-									transition: {
-										type: 'spring',
-										stiffness: 400,
-										damping: 10,
-									},
-								},
-								tap: {
-									scale: 0.98,
-								},
-							}}
-							whileHover='hover'
-							whileTap='tap'>
-							Chat on WhatsApp
-						</motion.a>
-					</div>
+					</motion.div>
 				</motion.div>
 			</div>
-		</section>
+
+			{/* Background decorative elements */}
+			<div className='absolute inset-0 overflow-hidden -z-10'>
+				<div
+					className='absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full'
+					style={{ filter: 'blur(80px)' }}
+				/>
+				<div
+					className='absolute bottom-0 right-1/4 w-96 h-96 bg-white/10 rounded-full'
+					style={{ filter: 'blur(80px)' }}
+				/>
+			</div>
+		</Section>
 	);
 };
 

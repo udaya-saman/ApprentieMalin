@@ -175,7 +175,7 @@ const LearningSupport = () => {
 										'Send your question through WhatsApp at any hour of the day or night - our AI tutor never sleeps.',
 								},
 								{
-									icon: '🔍',
+									icon: '💡',
 									title: 'Get Clear Explanations',
 									description:
 										'Receive step-by-step explanations that are easy to understand and tailored to your grade level.',

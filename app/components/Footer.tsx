@@ -1,113 +1,137 @@
+'use client';
+
 import Link from 'next/link';
-
-interface FooterLink {
-  name: string;
-  href: string;
-}
-
-interface FooterColumn {
-  title: string;
-  links: FooterLink[];
-}
+import { motion } from 'framer-motion';
+import config from '../config';
+import { FooterLink } from '../types';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  
-  const footerLinks: FooterColumn[] = [
-    {
-      title: 'Platform',
-      links: [
-        { name: 'About', href: '#about' },
-        { name: 'How It Works', href: '#how-it-works' },
-        { name: 'Features', href: '#features' },
-        { name: 'FAQ', href: '#faq' },
-      ],
-    },
-    {
-      title: 'Parents',
-      links: [
-        { name: 'Safety', href: '#about' },
-        { name: 'Pricing', href: '#pricing' },
-        { name: 'Testimonials', href: '#testimonials' },
-        { name: 'WhatsApp Access', href: '#get-started' },
-      ],
-    },
-    {
-      title: 'Contact',
-      links: [
-        { name: 'Support', href: '#' },
-        { name: 'WhatsApp', href: '#' },
-        { name: 'Email', href: 'mailto:contact@apprentimalin.com' },
-      ],
-    },
-  ];
+	// Animation variants
+	const containerVariants = {
+		hidden: { opacity: 0 },
+		visible: {
+			opacity: 1,
+			transition: {
+				staggerChildren: 0.1,
+				delayChildren: 0.1,
+			},
+		},
+	};
 
-  const renderFooterLink = (link: FooterLink) => (
-    <li key={link.name}>
-      <Link 
-        href={link.href} 
-        className="text-sm text-white/60 hover:text-white hover:underline transition-colors duration-200"
-      >
-        {link.name}
-      </Link>
-    </li>
-  );
+	const itemVariants = {
+		hidden: { opacity: 0, y: 20 },
+		visible: { opacity: 1, y: 0 },
+	};
 
-  const renderFooterColumn = (column: FooterColumn) => (
-    <div key={column.title}>
-      <h3 className="mb-5 text-sm font-semibold uppercase tracking-wider text-white/90">
-        {column.title}
-      </h3>
-      <ul className="space-y-3">
-        {column.links.map(renderFooterLink)}
-      </ul>
-    </div>
-  );
+	const currentYear = new Date().getFullYear();
+	
+	// Prepare footer sections from config
+	const footerSections = [
+		{
+			title: 'Product',
+			links: config.nav.main.filter(link => link.name !== 'Home'),
+		},
+		{
+			title: 'Resources',
+			links: [
+				{ name: 'Help Center', href: '#' },
+				{ name: 'Blog', href: '#' },
+				...config.nav.legal,
+			],
+		},
+		{
+			title: 'Company',
+			links: [
+				{ name: 'About Us', href: '#about' },
+				{ name: 'Contact', href: `mailto:${config.contact.email}` },
+				{ name: 'Careers', href: '#' },
+			],
+		},
+	];
 
-  return (
-    <footer className="relative bg-blue-900/80 text-white pt-20 pb-10 mt-20 border-t border-white/10">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 mb-12">
-          {/* Logo and description */}
-          <div className="lg:col-span-1 mb-6 md:mb-0">
-            <Link href="/" className="inline-block mb-5">
-              <span className="text-2xl font-bold gradient-text">ApprentiMalin</span>
-            </Link>
-            <p className="max-w-xs text-sm text-white/70 leading-relaxed">
-              AI-powered academic support platform for primary and middle school students. 
-              Smart, fun, and personalized learning.
-            </p>
-          </div>
+	return (
+		<footer className='bg-navy-500 pt-16 pb-8'>
+			<div className='container'>
+				<motion.div
+					variants={containerVariants}
+					initial='hidden'
+					whileInView='visible'
+					viewport={{ once: true }}
+					className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8'>
+					{/* Logo and description */}
+					<motion.div 
+						variants={itemVariants} 
+						className='lg:col-span-2'
+					>
+						<Link href='#' className='inline-block'>
+							<h2 className='text-2xl font-bold text-white mb-4'>
+								{config.site.name}
+							</h2>
+						</Link>
+						<p className='text-white/70 mb-6 max-w-md'>
+							{config.site.description}
+						</p>
+						<div className='flex space-x-4'>
+							{/* Social media icons */}
+							{Object.entries(config.social).map(([platform, url]) => (
+								<Link
+									key={platform}
+									href={url}
+									className='w-10 h-10 flex items-center justify-center rounded-full bg-whiteAlpha-100 text-white hover:bg-whiteAlpha-200 transition-colors'
+									aria-label={`Follow us on ${platform}`}
+									tabIndex={0}>
+									{platform[0].toUpperCase()}
+								</Link>
+							))}
+						</div>
+					</motion.div>
 
-          {/* Links */}
-          {footerLinks.map(renderFooterColumn)}
-        </div>
-        
-        {/* Bottom section */}
-        <div className="mt-12 pt-8 border-t border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-            <p className="text-sm text-white/60 mb-4 md:mb-0">
-              &copy; {currentYear} ApprentiMalin. All rights reserved.
-            </p>
-            <div className="flex space-x-6">
-              <Link 
-                href="#" 
-                className="text-sm text-white/60 hover:text-white hover:underline transition-colors duration-200"
-              >
-                Privacy Policy
-              </Link>
-              <Link 
-                href="#" 
-                className="text-sm text-white/60 hover:text-white hover:underline transition-colors duration-200"
-              >
-                Terms of Service
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
+					{/* Footer sections */}
+					{footerSections.map((section) => (
+						<motion.div key={section.title} variants={itemVariants}>
+							<h3 className='text-white font-semibold mb-4'>{section.title}</h3>
+							<ul className='space-y-2'>
+								{section.links.map((link) => (
+									<li key={link.name}>
+										<Link
+											href={link.href}
+											className='text-white/70 hover:text-white transition-colors'
+											tabIndex={0}
+											aria-label={link.name}>
+											{link.name}
+										</Link>
+									</li>
+								))}
+							</ul>
+						</motion.div>
+					))}
+				</motion.div>
+
+				{/* Bottom copyright section */}
+				<motion.div
+					variants={itemVariants}
+					initial='hidden'
+					whileInView='visible'
+					viewport={{ once: true }}
+					className='pt-8 mt-8 border-t border-whiteAlpha-100 text-center md:text-left md:flex items-center justify-between'>
+					<p className='text-white/60 text-sm mb-4 md:mb-0'>
+						© {currentYear} {config.site.name}. All rights reserved.
+					</p>
+					<div className='flex flex-wrap justify-center md:justify-end space-x-4'>
+						{config.nav.legal.map(link => (
+							<Link
+								key={link.name}
+								href={link.href}
+								className='text-white/60 hover:text-white text-sm'
+								tabIndex={0}>
+								{link.name}
+							</Link>
+						))}
+					</div>
+				</motion.div>
+			</div>
+		</footer>
+	);
 };
 
-export default Footer; 
+export default Footer;

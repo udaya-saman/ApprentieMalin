@@ -1,135 +1,103 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import Section from '../components/ui/Section';
+import SectionTitle from '../components/ui/SectionTitle';
+import Card from '../components/ui/Card';
+import WaveDivider from '../components/ui/WaveDivider';
 
 const AboutSection = () => {
-	const [ref, inView] = useInView({
-		triggerOnce: true,
-		threshold: 0.1,
-	});
-
-	const fadeUpVariants = {
-		hidden: { opacity: 0, y: 30 },
+	// Animation variants
+	const cardVariants = {
+		hidden: { opacity: 0, y: 20 },
 		visible: {
 			opacity: 1,
 			y: 0,
-			transition: { duration: 0.6 },
+			transition: { type: 'spring', stiffness: 100, damping: 15 },
 		},
 	};
 
+	// Content data
+	const aboutPoints = [
+		{
+			title: 'Smart AI Support',
+			description:
+				'Our AI tutor understands school curriculum and provides personalized explanations.',
+			icon: '🧠',
+			bgColor: 'bg-blue-50',
+			hoverColor: 'hover:bg-blue-100',
+		},
+		{
+			title: 'On WhatsApp',
+			description:
+				'No extra apps needed! Just chat with our assistant on the platform you already use.',
+			icon: '📱',
+			bgColor: 'bg-green-50',
+			hoverColor: 'hover:bg-green-100',
+		},
+		{
+			title: 'Safe for Children',
+			description:
+				'Designed with student safety in mind, with content filtering and age-appropriate responses.',
+			icon: '🛡️',
+			bgColor: 'bg-red-50',
+			hoverColor: 'hover:bg-red-100',
+		},
+		{
+			title: 'All Subjects Covered',
+			description:
+				'From math to science, history to literature - help across the primary and middle school curriculum.',
+			icon: '📚',
+			bgColor: 'bg-yellow-50',
+			hoverColor: 'hover:bg-yellow-100',
+		},
+	];
+
 	return (
-		<section id='about' className='py-20 pt-24 section-white relative'>
-			<div className='container mx-auto px-4'>
-				<motion.div
-					ref={ref}
-					initial='hidden'
-					animate={inView ? 'visible' : 'hidden'}
-					variants={fadeUpVariants}
-					className='max-w-4xl mx-auto text-center mb-10'>
-					<h2 className='text-3xl md:text-4xl font-bold mb-4'>
-						About <span className='gradient-text'>ApprentieMalin</span>
-					</h2>
-					<p className='text-lg text-blue-900 mb-6'>
-						ApprentieMalin connects students with instant, personalized academic
-						support through WhatsApp. Our AI tutor helps primary and middle
-						school students build confidence and excel in their studies with
-						24/7 homework assistance.
-					</p>
-				</motion.div>
+		<Section id='about' variant='white' className='relative'>
+			{/* Section title */}
+			<SectionTitle
+				title='About ApprentieMalin'
+				subtitle='We help students master their schoolwork with friendly AI-powered tutoring that makes learning easier and more accessible.'
+			/>
 
-				<div className='grid grid-cols-1 md:grid-cols-3 gap-8 mt-12'>
-					{aboutFeatures.map((feature, index) => (
-						<motion.div
-							key={feature.title}
-							initial='hidden'
-							animate={inView ? 'visible' : 'hidden'}
-							variants={{
-								hidden: { opacity: 0, y: 30 },
-								visible: {
-									opacity: 1,
-									y: 0,
-									transition: { duration: 0.6, delay: 0.1 * index },
-								},
-							}}
-							className='card hover:bg-white/5 hover:scale-105 transition-all duration-300 bg-white p-6 rounded-xl shadow-sm'>
-							<div className='w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center mb-4 mx-auto md:mx-0'>
-								<span className='text-xl font-bold text-white'>
-									{feature.icon}
-								</span>
-							</div>
-							<h3 className='text-xl font-bold mb-3 text-blue-900 text-center md:text-left'>
-								{feature.title}
-							</h3>
-							<p className='text-blue-800 text-center md:text-left'>
-								{feature.description}
-							</p>
-						</motion.div>
-					))}
-				</div>
-
-				<motion.div
-					initial='hidden'
-					animate={inView ? 'visible' : 'hidden'}
-					variants={{
-						hidden: { opacity: 0 },
-						visible: {
-							opacity: 1,
-							transition: { duration: 0.8, delay: 0.6 },
-						},
-					}}
-					className='mt-16 p-6 md:p-8 bg-white border border-blue-100 rounded-2xl shadow-md'>
-					<div className='flex flex-col md:flex-row items-center'>
-						<div className='w-full md:w-2/3 mb-6 md:mb-0 md:pr-8'>
-							<h3 className='text-2xl font-bold mb-4 text-blue-900'>
-								Our Commitment
-							</h3>
-							<p className='text-blue-800 mb-4'>
-								Founded by educators and parents, ApprentieMalin is trusted by
-								over 10,000 students weekly. We're committed to academic
-								excellence with 93% of users reporting improved understanding of
-								difficult concepts.
-							</p>
-							<p className='text-blue-800'>
-								Child safety is our priority. We employ advanced content
-								monitoring and align all educational guidance with current
-								curricula across math, sciences, languages, and humanities for
-								grades 1-9.
-							</p>
-						</div>
-						<div className='w-full md:w-1/3 flex justify-center'>
-							<div className='w-40 h-40 rounded-full bg-gradient-to-r from-blue-100 to-blue-200 flex items-center justify-center'>
-								<div className='w-32 h-32 rounded-full bg-white border border-blue-200 flex items-center justify-center'>
-									<span className='text-4xl'>🛡️</span>
+			{/* About cards */}
+			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12'>
+				{aboutPoints.map((point, index) => (
+					<motion.div
+						key={point.title}
+						variants={cardVariants}
+						initial='hidden'
+						whileInView='visible'
+						viewport={{ once: true }}
+						transition={{ delay: 0.1 * index }}
+						whileHover={{ scale: 1.03 }}
+						className='h-full'>
+						<Card
+							variant='glass'
+							className={`h-full ${point.bgColor} ${point.hoverColor} transition-all duration-300 border-2 border-blue-200`}>
+							<div className='flex flex-col items-center text-center h-full'>
+								<div className='text-5xl mb-4 transform transition-transform duration-300 hover:scale-110'>
+									{point.icon}
 								</div>
+								<h3 className='text-xl font-bold mb-2 text-blue-800'>
+									{point.title}
+								</h3>
+								<p className='text-sm text-blue-700'>{point.description}</p>
 							</div>
-						</div>
-					</div>
-				</motion.div>
+						</Card>
+					</motion.div>
+				))}
 			</div>
-		</section>
+
+			{/* Fun decorative elements */}
+			<div className='absolute top-1/2 -left-24 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl animate-pulse' />
+			<div className='absolute bottom-20 -right-24 w-56 h-56 bg-blue-400/20 rounded-full blur-3xl animate-pulse' />
+
+			{/* Wave divider at bottom */}
+			<WaveDivider position='bottom' />
+		</Section>
 	);
 };
-
-const aboutFeatures = [
-	{
-		icon: '📚',
-		title: 'Academic Support',
-		description:
-			'Instant homework help and explanations for complex topics available 24/7, with responses in under 2 minutes.',
-	},
-	{
-		icon: '💬',
-		title: 'WhatsApp Integration',
-		description:
-			'Access tutoring directly through WhatsApp—no new apps to download, just message and learn immediately.',
-	},
-	{
-		icon: '🔍',
-		title: 'Curriculum-Aligned',
-		description:
-			'All content follows official educational standards for primary and middle school subjects across multiple disciplines.',
-	},
-];
 
 export default AboutSection;

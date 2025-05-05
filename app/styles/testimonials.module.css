@@ -1,0 +1,31 @@
+/* Custom pagination styles */
+.customBullet {
+	width: 7.5px !important;
+	height: 7.5px !important;
+	display: inline-block !important;
+	border-radius: 50% !important;
+	background-color: #d5e8fe !important;
+	opacity: 0.6 !important;
+	cursor: pointer !important;
+	transition: all 0.3s ease !important;
+	margin: 0 6px !important;
+	border: 1.5px solid #d5e8fe !important;
+	box-shadow: 0 0 6px rgba(213, 232, 254, 0.5) !important;
+	transform: scale(1) !important;
+}
+
+.customBullet:hover {
+	background-color: #ffffff !important;
+	transform: scale(1.2) !important;
+	border-color: #ffffff !important;
+	box-shadow: 0 0 9px rgba(255, 255, 255, 0.5) !important;
+	opacity: 1 !important;
+}
+
+.customBulletActive {
+	background-color: #ffffff !important;
+	border-color: #ffffff !important;
+	transform: scale(1.3) !important;
+	box-shadow: 0 0 11px rgba(255, 255, 255, 0.6) !important;
+	opacity: 1 !important;
+}

@@ -16,11 +16,11 @@ export const metadata: Metadata = {
 		'AI tutor, academic support, homework help, primary school, middle school, WhatsApp tutor, personalized learning, ApprentieMalin',
 };
 
-export default function RootLayout({
-	children,
-}: {
+interface RootLayoutProps {
 	children: React.ReactNode;
-}) {
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
 	return (
 		<html
 			lang='en'

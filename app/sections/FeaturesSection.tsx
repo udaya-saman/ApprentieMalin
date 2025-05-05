@@ -11,7 +11,7 @@ import config from '../config';
 // Debounce helper function
 const debounce = (func: Function, wait: number) => {
 	let timeout: NodeJS.Timeout;
-	return function executedFunction(...args: any[]) {
+	return function executedFunction(...args: unknown[]) {
 		const later = () => {
 			clearTimeout(timeout);
 			func(...args);
@@ -375,7 +375,7 @@ const FeaturesSection = () => {
 									<button
 										className='feature-button'
 										aria-label={`Click here for more information about ${feature.title}`}
-										onClick={(e) => {
+										onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
 											e.stopPropagation();
 											console.log('Button clicked for:', feature.title);
 										}}>

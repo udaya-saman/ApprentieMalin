@@ -171,7 +171,7 @@ const HeroSection = () => {
 	// Effect to change animation every 15 seconds
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setCurrentEffect((prev) => getRandomEffect(prev));
+			setCurrentEffect((prev: number) => getRandomEffect(prev));
 		}, 15000);
 
 		return () => clearInterval(interval);

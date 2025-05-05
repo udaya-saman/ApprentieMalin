@@ -111,7 +111,7 @@ const FAQSection = () => {
 									aria-label={
 										openIndex === index ? 'Close answer' : 'View answer'
 									}
-									onClick={(e) => {
+									onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
 										e.stopPropagation();
 										handleToggleFAQ(index);
 									}}

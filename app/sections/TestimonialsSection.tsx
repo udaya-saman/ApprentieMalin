@@ -23,7 +23,7 @@ const TestimonialsSection = () => {
 		setIsClient(true);
 	}, []);
 
-	const handleDotClick = (index) => {
+	const handleDotClick = (index: number) => {
 		if (swiperRef.current && swiperRef.current.swiper) {
 			swiperRef.current.swiper.slideToLoop(index);
 		}

@@ -40,8 +40,7 @@ const CTASection = () => {
 		<Section
 			id='get-started'
 			variant='blue'
-			className='relative overflow-hidden min-h-screen flex items-center justify-center'
-			style={{ background: 'linear-gradient(135deg, #0071ed 0%, #00a2ff 100%)' }}>
+			className='relative overflow-hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0071ed] to-[#00a2ff]'>
 			<div className='relative z-10 max-w-4xl mx-auto px-4 py-8 -mt-[60px] scale-90 text-center'>
 				<motion.div
 					variants={containerVariants}

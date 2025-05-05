@@ -31,9 +31,9 @@ const CTASection = () => {
 			transition: {
 				duration: 2,
 				repeat: Infinity,
-				ease: "easeInOut"
-			}
-		}
+				ease: 'easeInOut',
+			},
+		},
 	};
 
 	return (
@@ -49,25 +49,18 @@ const CTASection = () => {
 					viewport={{ once: true }}
 					className='flex flex-col items-center'>
 					{/* Rocket Icon with expanding glow effect */}
-					<motion.div
-						variants={itemVariants}
-						className='mb-8 relative'>
+					<motion.div variants={itemVariants} className='mb-8 relative'>
 						<div className='w-16 h-16 text-4xl flex items-center justify-center relative'>
-							<motion.div 
+							<motion.div
 								className='absolute inset-0 bg-white/20 rounded-full blur-xl'
 								variants={glowVariants}
-								initial="initial"
-								animate="animate"
-							></motion.div>
+								initial='initial'
+								animate='animate'></motion.div>
 							<div className='relative'>
-								<span 
-									role="img" 
-									aria-label="rocket" 
-									className="animate-bounce relative z-10 text-5xl"
-									style={{ 
-										filter: 'drop-shadow(0 0 15px rgba(255,255,255,0.5))',
-										textShadow: '0 0 20px rgba(255,255,255,0.5)'
-									}}>
+								<span
+									role='img'
+									aria-label='rocket'
+									className='animate-bounce relative z-10 text-5xl drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]'>
 									🚀
 								</span>
 							</div>
@@ -75,24 +68,26 @@ const CTASection = () => {
 					</motion.div>
 
 					{/* CTA content */}
-					<motion.div variants={itemVariants} className="w-full">
+					<motion.div variants={itemVariants} className='w-full'>
 						<h2 className='text-4xl md:text-5xl font-bold mb-6 text-white'>
 							Ready to Transform Learning?
 						</h2>
 						<p className='text-xl text-white/90 mb-8 max-w-2xl mx-auto'>
-							Join thousands of students who are already experiencing smarter, more engaging
-							learning with ApprentieMalin's AI tutor on WhatsApp.
+							Join thousands of students who are already experiencing smarter,
+							more engaging learning with ApprentieMalin's AI tutor on WhatsApp.
 						</p>
-						<motion.div variants={itemVariants} className="flex flex-col items-center gap-4">
+						<motion.div
+							variants={itemVariants}
+							className='flex flex-col items-center gap-4'>
 							<Button
 								href='#'
 								variant='primary'
 								className='bg-white text-[#0071ed] hover:bg-blue-50 font-medium text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2'>
-								<Image 
-									src="/whatsapp.svg" 
-									alt="WhatsApp icon" 
-									width={24} 
-									height={24} 
+								<Image
+									src='/whatsapp.svg'
+									alt='WhatsApp icon'
+									width={24}
+									height={24}
 								/>
 								Chat on WhatsApp
 							</Button>
@@ -103,14 +98,8 @@ const CTASection = () => {
 
 			{/* Background decorative elements */}
 			<div className='absolute inset-0 overflow-hidden -z-10'>
-				<div
-					className='absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full'
-					style={{ filter: 'blur(80px)' }}
-				/>
-				<div
-					className='absolute bottom-0 right-1/4 w-96 h-96 bg-white/10 rounded-full'
-					style={{ filter: 'blur(80px)' }}
-				/>
+				<div className='absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-[80px]' />
+				<div className='absolute bottom-0 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-[80px]' />
 			</div>
 		</Section>
 	);

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import type { SwiperRef } from 'swiper/react';
+import SwiperCore from 'swiper';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { useRef, useState, useEffect } from 'react';
 import Section from '../components/ui/Section';
@@ -17,7 +17,7 @@ import 'swiper/css/pagination';
 const TestimonialsSection = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [isClient, setIsClient] = useState(false);
-	const swiperRef = useRef<SwiperRef>(null);
+	const [swiperInstance, setSwiperInstance] = useState<SwiperCore | null>(null);
 	const totalSlides = config.testimonials.length;
 
 	useEffect(() => {
@@ -25,8 +25,8 @@ const TestimonialsSection = () => {
 	}, []);
 
 	const handleDotClick = (index: number) => {
-		if (swiperRef.current && swiperRef.current.swiper) {
-			swiperRef.current.swiper.slideToLoop(index);
+		if (swiperInstance) {
+			swiperInstance.slideToLoop(index);
 		}
 	};
 
@@ -61,7 +61,7 @@ const TestimonialsSection = () => {
 
 				<div className='max-w-7xl mx-auto'>
 					<Swiper
-						ref={swiperRef}
+						onSwiper={setSwiperInstance}
 						modules={[Pagination, Autoplay]}
 						spaceBetween={24}
 						slidesPerView={1}

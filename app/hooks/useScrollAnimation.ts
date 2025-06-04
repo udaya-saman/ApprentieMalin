@@ -15,9 +15,12 @@ export const useScrollAnimation = ({
 	staggerChildren = false,
 }: UseScrollAnimationProps = {}) => {
 	const ref = useRef(null);
+	const offset = Math.floor(threshold * 100);
+	const marginValue = `-${offset}px -${offset}px -${offset}px -${offset}px`;
+
 	const isInView = useInView(ref, {
 		once,
-		margin: `-${Math.floor(threshold * 100)}px`,
+		margin: marginValue,
 	});
 
 	return {

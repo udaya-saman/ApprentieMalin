@@ -91,7 +91,7 @@ const Header = () => {
 			});
 
 			// Only update state if a section is clearly visible and different from current
-			if (mostVisibleSection && mostVisibleSection.ratio > 0.2) {
+			if (mostVisibleSection !== null && mostVisibleSection.ratio > 0.2) {
 				if (activeSection !== mostVisibleSection.id) {
 					setActiveSection(mostVisibleSection.id);
 					lastObservedSection.current = mostVisibleSection.id;

@@ -92,18 +92,14 @@ const Header = () => {
 				}
 			});
 
-			// Type guard function to ensure TypeScript knows the type
-			const isValidSection = (section: VisibleSection | null): section is VisibleSection => {
-				return section !== null && typeof section.ratio === 'number' && section.ratio > 0.2;
-			};
+			// Use explicit checks and early return to avoid TypeScript issues
+			if (!mostVisibleSection) return;
+			if (mostVisibleSection.ratio <= 0.2) return;
+			if (activeSection === mostVisibleSection.id) return;
 
-			// Only update state if a section is clearly visible and different from current
-			if (isValidSection(mostVisibleSection)) {
-				if (activeSection !== mostVisibleSection.id) {
-					setActiveSection(mostVisibleSection.id);
-					lastObservedSection.current = mostVisibleSection.id;
-				}
-			}
+			// At this point, we know mostVisibleSection is valid
+			setActiveSection(mostVisibleSection.id);
+			lastObservedSection.current = mostVisibleSection.id;
 		};
 
 		const observerOptions: IntersectionObserverInit = {

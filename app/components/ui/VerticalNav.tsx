@@ -1,5 +1,5 @@
 'use client';
-
+// TypeScript fixes applied for Vercel deployment
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -268,7 +268,9 @@ const VerticalNav = () => {
 
 			// Only check background in normal mode, not in dark mode
 			if (!isDarkMode) {
-				setIsWhiteBackground(checkBackground(mostVisibleSection as HTMLElement));
+				setIsWhiteBackground(
+					checkBackground(mostVisibleSection as HTMLElement),
+				);
 			}
 		};
 

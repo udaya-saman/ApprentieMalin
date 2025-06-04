@@ -84,7 +84,7 @@ const Header = () => {
 					};
 
 					if (
-						!mostVisibleSection ||
+						mostVisibleSection === null ||
 						currentSection.ratio > mostVisibleSection.ratio
 					) {
 						mostVisibleSection = currentSection;
@@ -92,8 +92,13 @@ const Header = () => {
 				}
 			});
 
+			// Type guard function to ensure TypeScript knows the type
+			const isValidSection = (section: VisibleSection | null): section is VisibleSection => {
+				return section !== null && typeof section.ratio === 'number' && section.ratio > 0.2;
+			};
+
 			// Only update state if a section is clearly visible and different from current
-			if (mostVisibleSection && mostVisibleSection.ratio > 0.2) {
+			if (isValidSection(mostVisibleSection)) {
 				if (activeSection !== mostVisibleSection.id) {
 					setActiveSection(mostVisibleSection.id);
 					lastObservedSection.current = mostVisibleSection.id;

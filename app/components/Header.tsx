@@ -78,20 +78,22 @@ const Header = () => {
 
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
+					const currentSection: VisibleSection = {
+						id: entry.target.id,
+						ratio: entry.intersectionRatio,
+					};
+
 					if (
 						!mostVisibleSection ||
-						entry.intersectionRatio > mostVisibleSection.ratio
+						currentSection.ratio > mostVisibleSection.ratio
 					) {
-						mostVisibleSection = {
-							id: entry.target.id,
-							ratio: entry.intersectionRatio,
-						};
+						mostVisibleSection = currentSection;
 					}
 				}
 			});
 
 			// Only update state if a section is clearly visible and different from current
-			if (mostVisibleSection !== null && mostVisibleSection.ratio > 0.2) {
+			if (mostVisibleSection && mostVisibleSection.ratio > 0.2) {
 				if (activeSection !== mostVisibleSection.id) {
 					setActiveSection(mostVisibleSection.id);
 					lastObservedSection.current = mostVisibleSection.id;

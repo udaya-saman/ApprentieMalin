@@ -1,13 +1,15 @@
-import React from 'react';
-import Link from 'next/link';
+'use client';
+
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import useAnimationVariants from '@/app/hooks/useAnimationVariants';
 
 interface ButtonProps {
 	children: React.ReactNode;
 	href?: string;
 	variant?: 'primary' | 'secondary';
 	className?: string;
-	onClick?: (e: React.MouseEvent) => void;
+	onClick?: () => void;
 	animate?: boolean;
 }
 
@@ -19,6 +21,8 @@ const Button = ({
 	onClick,
 	animate = true,
 }: ButtonProps) => {
+	const animations = useAnimationVariants();
+
 	// Base button styles
 	const baseStyles = 'btn';
 
@@ -34,11 +38,11 @@ const Button = ({
 	// Framer Motion props for animation
 	const motionProps = animate
 		? {
-				whileHover: { scale: 1.05 },
-				whileTap: { scale: 0.95 },
-				initial: { opacity: 0, y: 20 },
-				animate: { opacity: 1, y: 0 },
-				transition: { type: 'spring', stiffness: 400, damping: 15 },
+				variants: animations.fadeUp(),
+				initial: 'hidden',
+				animate: 'visible',
+				whileHover: animations.hover,
+				whileTap: animations.tap,
 		  }
 		: {};
 

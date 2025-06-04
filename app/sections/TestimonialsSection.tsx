@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore from 'swiper';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { useRef, useState, useEffect } from 'react';
 import Section from '../components/ui/Section';
@@ -17,16 +16,16 @@ import 'swiper/css/pagination';
 const TestimonialsSection = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [isClient, setIsClient] = useState(false);
-	const [swiperInstance, setSwiperInstance] = useState<SwiperCore | null>(null);
+	const swiperRef = useRef(null);
 	const totalSlides = config.testimonials.length;
 
 	useEffect(() => {
 		setIsClient(true);
 	}, []);
 
-	const handleDotClick = (index: number) => {
-		if (swiperInstance) {
-			swiperInstance.slideToLoop(index);
+	const handleDotClick = (index) => {
+		if (swiperRef.current && swiperRef.current.swiper) {
+			swiperRef.current.swiper.slideToLoop(index);
 		}
 	};
 
@@ -38,7 +37,18 @@ const TestimonialsSection = () => {
 		<Section
 			id='testimonials'
 			variant='blue'
-			className='relative overflow-hidden py-16 lg:py-20'>
+			className='relative overflow-hidden pt-[100px] pb-16 lg:pb-20'
+			style={{
+				background: 'linear-gradient(135deg, #0071ed 0%, #00a2ff 100%)',
+			}}>
+			{/* Background glassmorphism effects */}
+			<div className='absolute inset-0 overflow-hidden pointer-events-none'>
+				<div className='absolute top-0 left-1/4 w-[500px] h-[500px] bg-white/10 rounded-full mix-blend-overlay filter blur-3xl animate-pulse' />
+				<div className='absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-white/10 rounded-full mix-blend-overlay filter blur-3xl animate-pulse delay-150' />
+				<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 rounded-full mix-blend-overlay filter blur-3xl animate-pulse delay-300' />
+				<div className="absolute inset-0 bg-[url('/stars.png')] opacity-10 animate-twinkle" />
+			</div>
+
 			<div className='container mx-auto px-4'>
 				<div className='text-center mb-12'>
 					<motion.h2
@@ -61,7 +71,7 @@ const TestimonialsSection = () => {
 
 				<div className='max-w-7xl mx-auto'>
 					<Swiper
-						onSwiper={setSwiperInstance}
+						ref={swiperRef}
 						modules={[Pagination, Autoplay]}
 						spaceBetween={24}
 						slidesPerView={1}
@@ -107,13 +117,6 @@ const TestimonialsSection = () => {
 						</div>
 					</div>
 				</div>
-			</div>
-
-			{/* Background decorations */}
-			<div className='absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none'>
-				<div className='absolute top-1/4 -left-64 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob' />
-				<div className='absolute top-3/4 -right-64 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000' />
-				<div className='absolute top-1/2 left-1/2 -translate-x-1/2 w-96 h-96 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000' />
 			</div>
 		</Section>
 	);

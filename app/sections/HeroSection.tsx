@@ -171,7 +171,7 @@ const HeroSection = () => {
 	// Effect to change animation every 15 seconds
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setCurrentEffect((prev: number) => getRandomEffect(prev));
+			setCurrentEffect((prev) => getRandomEffect(prev));
 		}, 15000);
 
 		return () => clearInterval(interval);
@@ -240,22 +240,30 @@ const HeroSection = () => {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6 }}
-							className='text-4xl md:text-5xl lg:text-6xl font-bold mb-6'>
-							<span className='text-white'>Smart, Fun, and Personalized</span>{' '}
-							<br />
-							<span className='text-[#FFD700] font-normal'>
-								Learning Support
-							</span>
+							className='text-4xl md:text-5xl lg:text-7xl font-bold mb-8'>
+							<span className='text-white inline-block leading-tight'>
+								ApprentieMalin:
+							</span>{' '}
+							<div className='mt-1 flex flex-col gap-[0.8rem]'>
+								<span className='text-[#FFD700] dark:text-[#e1d936] font-medium text-2xl md:text-3xl lg:text-[2.5rem]'>
+									Smart homework help and
+								</span>
+								<span className='text-[#FFD700] dark:text-[#e1d936] font-medium text-2xl md:text-3xl lg:text-[2.5rem]'>
+									language learning for 8-14
+								</span>
+								<span className='text-[#FFD700] dark:text-[#e1d936] font-medium text-2xl md:text-3xl lg:text-[2.5rem]'>
+									year-olds
+								</span>
+							</div>
 						</motion.h1>
 
 						<motion.p
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, delay: 0.2 }}
-							className='text-lg md:text-xl text-white/80 mb-10 max-w-lg'>
-							ApprentieMalin uses AI to help primary and middle school students
-							with homework, explain concepts, and make learning fun - all
-							through WhatsApp.
+							className='text-lg md:text-xl text-white/90 mb-10 max-w-lg'>
+							Personalized and interactive help via our web platform for
+							elementary and middle school students.
 						</motion.p>
 
 						<motion.div
@@ -264,15 +272,15 @@ const HeroSection = () => {
 							transition={{ duration: 0.6, delay: 0.4 }}
 							className='flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4'>
 							<Button
-								href='#get-started'
+								href='/create-account'
 								variant='primary'
-								className='w-full sm:w-auto text-base px-8 py-3'>
-								Get Started for Free
+								className='w-full sm:w-auto text-base px-9 py-3.5 bg-white text-blue-600 dark:bg-white dark:text-[#1e1f23] font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl'>
+								Start your free 10-day trial
 							</Button>
 							<Button
 								href='#how-it-works'
 								variant='secondary'
-								className='w-full sm:w-auto text-base px-8 py-3'>
+								className='w-full sm:w-auto text-base px-9 py-3.5 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-colors duration-300 shadow-lg hover:shadow-xl'>
 								How It Works
 							</Button>
 						</motion.div>
@@ -281,10 +289,10 @@ const HeroSection = () => {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, delay: 0.6 }}
-							className='mt-3 flex items-center justify-center lg:justify-start'>
-							<div className='text-base text-white/80'>
-								<span className='font-bold text-white'>1,000+</span> students
-								already learning
+							className='mt-2 flex items-center justify-center lg:justify-start'>
+							<div className='text-base text-white/90'>
+								<span className='font-bold text-[#FFD700]'>1,000+</span>{' '}
+								students already learning
 							</div>
 						</motion.div>
 					</div>

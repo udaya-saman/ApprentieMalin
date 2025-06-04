@@ -16,7 +16,7 @@ const TestimonialCard = ({
 
 	return (
 		<motion.div
-			className={`bg-white/90 backdrop-blur-md rounded-xl p-6 shadow-lg border border-white/20 h-[280px] flex flex-col ${className}`}
+			className={`bg-white/90 backdrop-blur-md dark:bg-transparent rounded-xl p-6 shadow-lg border border-white/20 dark:border-white h-[280px] flex flex-col ${className}`}
 			whileHover={{ y: -5, transition: { duration: 0.2 } }}
 			initial={{ opacity: 0, y: 20 }}
 			whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ const TestimonialCard = ({
 			</p>
 
 			{/* Author section with white background */}
-			<div className='bg-white/80 rounded-lg p-3 mt-4'>
+			<div className='bg-white/80 dark:bg-transparent rounded-lg p-3 mt-4 dark:border dark:border-white/40'>
 				<div className='flex items-center gap-2'>
 					<div className='h-9 w-9 rounded-full overflow-hidden flex-shrink-0'>
 						{image ? (

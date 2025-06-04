@@ -1,7 +1,5 @@
 'use client';
 
-// This file has been completely updated - NO INLINE STYLES anywhere
-// Force Vercel to recognize the latest version
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Section from '../components/ui/Section';
@@ -42,7 +40,18 @@ const CTASection = () => {
 		<Section
 			id='get-started'
 			variant='blue'
-			className='relative overflow-hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0071ed] to-[#00a2ff]'>
+			className='relative overflow-hidden pt-32 pb-24 min-h-[calc(100vh-60px)] flex items-center justify-center'
+			style={{
+				background: 'linear-gradient(135deg, #0071ed 0%, #00a2ff 100%)',
+			}}>
+			{/* Background glassmorphism effects */}
+			<div className='absolute inset-0 overflow-hidden pointer-events-none'>
+				<div className='absolute top-0 left-1/4 w-[500px] h-[500px] bg-white/10 rounded-full mix-blend-overlay filter blur-3xl animate-pulse' />
+				<div className='absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-white/10 rounded-full mix-blend-overlay filter blur-3xl animate-pulse delay-150' />
+				<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 rounded-full mix-blend-overlay filter blur-3xl animate-pulse delay-300' />
+				<div className="absolute inset-0 bg-[url('/stars.png')] opacity-10 animate-twinkle" />
+			</div>
+
 			<div className='relative z-10 max-w-4xl mx-auto px-4 py-8 -mt-[60px] scale-90 text-center'>
 				<motion.div
 					variants={containerVariants}
@@ -62,7 +71,11 @@ const CTASection = () => {
 								<span
 									role='img'
 									aria-label='rocket'
-									className='animate-bounce relative z-10 text-5xl drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]'>
+									className='animate-bounce relative z-10 text-5xl'
+									style={{
+										filter: 'drop-shadow(0 0 15px rgba(255,255,255,0.5))',
+										textShadow: '0 0 20px rgba(255,255,255,0.5)',
+									}}>
 									🚀
 								</span>
 							</div>
@@ -81,10 +94,12 @@ const CTASection = () => {
 						<motion.div
 							variants={itemVariants}
 							className='flex flex-col items-center gap-4'>
-							<Button
-								href='#'
-								variant='primary'
-								className='bg-white text-[#0071ed] hover:bg-blue-50 font-medium text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2'>
+							<a
+								href='https://wa.me/1234567890'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='bg-white text-[#1e1f23] hover:bg-blue-50 font-medium text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 no-underline'
+								style={{ backgroundColor: 'white !important', color: '#1e1f23 !important' }}>
 								<Image
 									src='/whatsapp.svg'
 									alt='WhatsApp icon'
@@ -92,16 +107,10 @@ const CTASection = () => {
 									height={24}
 								/>
 								Chat on WhatsApp
-							</Button>
+							</a>
 						</motion.div>
 					</motion.div>
 				</motion.div>
-			</div>
-
-			{/* Background decorative elements */}
-			<div className='absolute inset-0 overflow-hidden -z-10'>
-				<div className='absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-[80px]' />
-				<div className='absolute bottom-0 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-[80px]' />
 			</div>
 		</Section>
 	);

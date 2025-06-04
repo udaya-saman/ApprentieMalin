@@ -2,13 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS Variables for Light and Dark Themes */
+:root {
+	/* Light theme colors */
+	--color-background: #ffffff;
+	--color-background-dark: #0062e6;
+	--color-text-primary: #1e293b;
+	--color-text-secondary: #64748b;
+	--color-text-inverse: #ffffff;
+	--color-card-bg: #ffffff;
+	--color-card-border: #e2e8f0;
+	--color-section-white: #ffffff;
+	--color-section-blue: linear-gradient(135deg, #0070ed 0%, #00a0ff 100%);
+	--color-blue-900: #1e3a8a;
+	--color-blue-50: #eff6ff;
+	--color-blue-100: #dbeafe;
+	--color-white-alpha-10: rgba(255, 255, 255, 0.1);
+	--color-white-alpha-20: rgba(255, 255, 255, 0.2);
+	--color-white-alpha-30: rgba(255, 255, 255, 0.3);
+}
+
+.dark {
+	/* Dark theme colors - uniform dark background and white text */
+	--color-background: #1e1f23;
+	--color-background-dark: #1e1f23;
+	--color-text-primary: #ffffff;
+	--color-text-secondary: #ffffff;
+	--color-text-inverse: #ffffff;
+	--color-card-bg: #1e1f23;
+	--color-card-border: #ffffff;
+	--color-section-white: #1e1f23;
+	--color-section-blue: #1e1f23;
+	--color-blue-900: #ffffff;
+	--color-blue-50: #1e1f23;
+	--color-blue-100: #1e1f23;
+	--color-white-alpha-10: rgba(255, 255, 255, 0.1);
+	--color-white-alpha-20: rgba(255, 255, 255, 0.2);
+	--color-white-alpha-30: rgba(255, 255, 255, 0.3);
+}
+
 @layer base {
 	html {
 		@apply scroll-smooth;
+		transition: background-color 0.3s ease, color 0.3s ease;
 	}
 
 	body {
-		@apply min-h-screen overflow-x-hidden bg-background-dark text-white;
+		@apply min-h-screen overflow-x-hidden;
+		background-color: var(--color-background-dark);
+		color: var(--color-text-inverse);
+		transition: background-color 0.3s ease, color 0.3s ease;
+	}
+
+	/* Dark mode body override */
+	.dark body {
+		background-color: #1e1f23;
+		color: #ffffff;
 	}
 }
 
@@ -25,8 +74,20 @@
 		@apply bg-white text-blue-900 hover:bg-opacity-90 shadow-lg hover:shadow-xl;
 	}
 
+	.dark .btn-primary {
+		background-color: #1e1f23 !important;
+		color: #ffffff !important;
+		border: 1px solid #ffffff !important;
+	}
+
 	.btn-secondary {
 		@apply bg-transparent text-white hover:bg-white/10 border-2 border-white;
+	}
+
+	.dark .btn-secondary {
+		background-color: #1e1f23 !important;
+		color: #ffffff !important;
+		border: 1px solid #ffffff !important;
 	}
 
 	/* Button styles for blue sections */
@@ -34,50 +95,138 @@
 		@apply bg-white text-blue-900 hover:bg-opacity-90 shadow-lg hover:shadow-xl;
 	}
 
+	.dark .section-blue .btn-primary {
+		background-color: #1e1f23 !important;
+		color: #ffffff !important;
+		border: 1px solid #ffffff !important;
+	}
+
 	.section-blue .btn-secondary {
 		@apply bg-transparent text-white hover:bg-white/10 border-2 border-white;
 	}
 
+	.dark .section-blue .btn-secondary {
+		background-color: #1e1f23 !important;
+		color: #ffffff !important;
+		border: 1px solid #ffffff !important;
+	}
+
 	.card {
-		@apply bg-navy-50 rounded-lg p-6 border border-white/10 text-white;
+		background-color: var(--color-card-bg);
+		border-color: var(--color-card-border);
+		@apply rounded-lg p-6 border text-white transition-all duration-300;
+	}
+
+	.dark .card {
+		background-color: #1e1f23 !important;
+		color: #ffffff !important;
+		border: 1px solid #ffffff !important;
 	}
 
 	.glass-card {
-		@apply bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 text-white;
+		@apply bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 text-white transition-all duration-300;
+	}
+
+	.dark .glass-card {
+		background-color: #1e1f23 !important;
+		color: #ffffff !important;
+		border: 1px solid #ffffff !important;
 	}
 
 	/* Section styles with alternating backgrounds */
 	.section {
-		@apply py-20;
+		@apply py-20 transition-all duration-300;
+	}
+
+	/* Add padding-top for sections with IDs to account for fixed header */
+	section[id]:not(#hero):not(#get-started):not(#client-area) {
+		@apply pt-[100px];
+	}
+
+	/* Keep original padding for get-started section */
+	section[id='get-started'] {
+		@apply pt-32;
+	}
+
+	/* Remove bottom padding for hero section only */
+	section[id='hero'] {
+		@apply pb-0;
 	}
 
 	.section-blue {
-		background: linear-gradient(135deg, #0070ed 0%, #00a0ff 100%);
-		@apply text-white;
+		background: var(--color-section-blue);
+		@apply text-white transition-all duration-300;
+	}
+
+	.dark .section-blue {
+		background: #1e1f23 !important;
+		color: #ffffff !important;
 	}
 
 	.section-white {
-		@apply bg-white text-blue-900;
+		background-color: var(--color-section-white);
+		color: var(--color-blue-900);
+		@apply transition-all duration-300;
+	}
+
+	.dark .section-white {
+		background-color: #1e1f23 !important;
+		color: #ffffff !important;
 	}
 
 	.section-title {
-		@apply text-3xl md:text-4xl font-bold mb-6;
+		@apply text-3xl md:text-4xl font-bold mb-6 transition-colors duration-300;
+		color: #233c85 !important;
+	}
+
+	.dark .section-title {
+		color: #ffffff !important;
 	}
 
 	.section-subtitle {
-		@apply text-lg mb-10 max-w-2xl mx-auto;
+		@apply text-lg mb-10 max-w-5xl mx-auto transition-colors duration-300;
+	}
+
+	.dark .section-subtitle {
+		color: #ffffff !important;
 	}
 
 	.section-white .section-subtitle {
-		@apply text-blue-900/80;
+		color: var(--color-blue-900);
+		opacity: 0.8;
+	}
+
+	.dark .section-white .section-subtitle {
+		color: #ffffff !important;
+		opacity: 1 !important;
 	}
 
 	.section-blue .section-subtitle {
 		@apply text-white/90;
 	}
 
+	.dark .section-blue .section-subtitle {
+		color: #ffffff !important;
+	}
+
 	.text-gradient {
-		@apply text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal;
+		@apply text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal transition-all duration-300;
+	}
+
+	.dark .text-gradient {
+		color: #ffffff !important;
+		background: none !important;
+		-webkit-background-clip: unset !important;
+		background-clip: unset !important;
+	}
+
+	/* FAQ Section title and subtitle override */
+	#faq .section-title {
+		color: white !important;
+	}
+
+	#faq .section-subtitle {
+		color: white !important;
 	}
 
 	.glowing-circle {
@@ -86,18 +235,39 @@
 
 	/* Cards for white sections */
 	.section-white .card {
-		@apply bg-white shadow-md border border-blue-100 text-blue-900;
+		background-color: var(--color-card-bg);
+		border-color: var(--color-card-border);
+		color: var(--color-blue-900);
+		@apply shadow-md border transition-all duration-300;
+	}
+
+	.dark .section-white .card {
+		background-color: #1e1f23 !important;
+		color: #ffffff !important;
+		border: 1px solid #ffffff !important;
 	}
 
 	/* Cards for blue sections */
 	.section-blue .card {
-		@apply bg-blue-600/30 border border-white/10 text-white;
+		@apply bg-blue-600/30 border border-white/10 text-white transition-all duration-300;
+	}
+
+	.dark .section-blue .card {
+		background-color: #1e1f23 !important;
+		color: #ffffff !important;
+		border: 1px solid #ffffff !important;
 	}
 
 	/* Text colors for different backgrounds */
 	.bg-blue-50 *,
 	.bg-blue-100 * {
-		@apply text-blue-900;
+		color: var(--color-blue-900);
+		@apply transition-colors duration-300;
+	}
+
+	.dark .bg-blue-50 *,
+	.dark .bg-blue-100 * {
+		color: #ffffff !important;
 	}
 
 	.bg-gradient-to-r[class*='from-blue-'] *,
@@ -107,26 +277,155 @@
 		@apply text-white;
 	}
 
+	.dark .bg-gradient-to-r[class*='from-blue-'] *,
+	.dark .bg-gradient-to-b[class*='from-blue-'] *,
+	.dark .bg-gradient-to-r[class*='from-indigo-'] *,
+	.dark .bg-gradient-to-b[class*='from-indigo-'] * {
+		color: #ffffff !important;
+	}
+
 	.bg-white * {
-		@apply text-blue-900;
+		color: var(--color-blue-900);
+		@apply transition-colors duration-300;
+	}
+
+	.dark .bg-white * {
+		color: #ffffff !important;
+	}
+
+	/* Universal dark mode text color override */
+	.dark * {
+		color: #ffffff !important;
+	}
+
+	/* Override for active navigation links in dark mode */
+	.dark nav a[aria-current='page'] {
+		color: #ffd400 !important;
+	}
+
+	/* Override gradient text styling for feature titles in dark mode */
+	.dark .text-gray-900 {
+		background: none !important;
+		-webkit-background-clip: unset !important;
+		background-clip: unset !important;
+		-webkit-text-fill-color: unset !important;
+	}
+
+	/* More specific override for feature card titles in dark mode */
+	.dark #features h3.text-gray-900 {
+		color: #f1dd00 !important;
+		background: none !important;
+		-webkit-background-clip: unset !important;
+		background-clip: unset !important;
+		-webkit-text-fill-color: unset !important;
+	}
+
+	/* Remove universal background override to prevent backgrounds around PNGs */
+	.dark section {
+		background: transparent !important;
+	}
+
+	/* Completely remove background from features section in dark mode */
+	.dark #features {
+		background: none !important;
+		background-color: transparent !important;
+		background-image: none !important;
+	}
+
+	/* Override the gradient background applied directly to the features section */
+	.dark section#features.bg-gradient-to-br {
+		background: transparent !important;
+		background-image: none !important;
+	}
+
+	/* Most aggressive override for features section background in dark mode */
+	.dark section[id='features'],
+	.dark #features,
+	.dark section#features,
+	.dark .bg-gradient-to-br#features {
+		background: transparent !important;
+		background-color: transparent !important;
+		background-image: none !important;
+		background-attachment: initial !important;
+		background-blend-mode: initial !important;
+		background-clip: initial !important;
+		background-origin: initial !important;
+		background-position: initial !important;
+		background-repeat: initial !important;
+		background-size: initial !important;
+	}
+
+	/* Specific override for robot CTA section background in dark mode */
+	.dark #features .bg-gradient-to-r {
+		background: #282c34 !important;
+	}
+
+	/* Override robot CTA button styles */
+	#features .bg-gradient-to-r a[href='/create-account'] {
+		background-color: white !important;
+		color: #1e1f23 !important;
+	}
+
+	/* Dark mode overrides for hero section */
+	.dark #hero .text-blue-600 {
+		background-color: white !important;
+		color: #1e1f23 !important;
+	}
+
+	.dark #hero .text-\#FFD700 {
+		color: white !important;
+	}
+
+	/* Keep the "1,000+" text in yellow color */
+	.dark #hero .font-bold.text-\[\#FFD700\] {
+		color: #f7d809 !important;
+	}
+
+	/* Ensure Header and its direct children divs get the dark background */
+	.dark header,
+	.dark header > div,
+	.dark header nav > div {
+		background-color: #1e1f23 !important;
+	}
+
+	/* Keep backdrop blur for scrolled/mobile header */
+	.dark header.bg-\[\#1e1f23\]\/90,
+	.dark header.bg-\[\#1e1f23\]\/98 {
+		backdrop-filter: blur(16px) !important;
 	}
 
 	/* Feature card button animations */
 	@keyframes gradient-flow {
-		0% { background-position: 0% 50%; }
-		50% { background-position: 100% 50%; }
-		100% { background-position: 0% 50%; }
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
 	}
 
 	@keyframes shimmer {
-		0% { transform: translateX(-100%); }
-		100% { transform: translateX(200%); }
+		0% {
+			transform: translateX(-100%);
+		}
+		100% {
+			transform: translateX(200%);
+		}
 	}
 
 	@keyframes pulse-glow {
-		0% { box-shadow: 0 0 0 0 rgba(0, 120, 240, 0.4); }
-		70% { box-shadow: 0 0 0 10px rgba(0, 120, 240, 0); }
-		100% { box-shadow: 0 0 0 0 rgba(0, 120, 240, 0); }
+		0% {
+			box-shadow: 0 0 0 0 rgba(0, 120, 240, 0.4);
+		}
+		70% {
+			box-shadow: 0 0 0 10px rgba(0, 120, 240, 0);
+		}
+		100% {
+			box-shadow: 0 0 0 0 rgba(0, 120, 240, 0);
+		}
 	}
 
 	.feature-button {
@@ -154,6 +453,36 @@
 			transparent 75%
 		);
 		animation: shimmer 2.5s infinite;
+	}
+
+	/* Dark mode overrides for pricing cards */
+	.dark #pricing .bg-white {
+		border: none !important;
+		box-shadow: none !important;
+	}
+
+	.dark #pricing .text-gray-500 {
+		color: #f7d809 !important;
+	}
+
+	/* Dark mode pricing cards - add white border and change PER MONTH color */
+	.dark section[id='pricing'] .bg-white.rounded-3xl {
+		border: 1px solid white !important;
+	}
+
+	.dark section[id='pricing'] .text-gray-500.uppercase {
+		color: #f7d809 !important;
+	}
+
+	/* Change parents section blue gradient to white with blue border */
+	#parents .bg-gradient-to-br.from-blue-500.to-blue-700 {
+		background: white !important;
+		border: 1px solid #3b82f6 !important;
+	}
+
+	/* Change checkmark icons color to yellow in parents section */
+	#parents .text-blue-600 {
+		color: #f7d809 !important;
 	}
 }
 
@@ -317,4 +646,33 @@
 
 .data-glow {
 	animation: dataGlow 2s ease-in-out infinite;
+}
+
+/* Remove backgrounds from specific components in dark mode */
+.dark .bg-white,
+.dark .bg-blue-50,
+.dark .bg-blue-100,
+.dark .bg-gradient-to-r,
+.dark .bg-gradient-to-b {
+	background: none !important;
+}
+
+/* Ensure text is white in dark mode for all sections */
+.dark .section-title,
+.dark .section-subtitle,
+.dark .section-white .section-subtitle,
+.dark .section-blue .section-subtitle,
+.dark .text-gradient {
+	color: #ffffff !important;
+}
+
+/* FAQ Contact Us button styling override */
+.bg-blue-600 a[href='/contact'] {
+	background-color: white !important;
+	color: #1e1f23 !important;
+}
+
+/* Home page pricing section cards - add white border in dark mode only */
+.dark #pricing .bg-white.rounded-3xl {
+	border: 1px solid white !important;
 }

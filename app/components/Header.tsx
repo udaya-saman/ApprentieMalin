@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NavLink } from '../types';
 import config from '../config';
+import { usePathname, useRouter } from 'next/navigation';
+import DarkModeToggle from './ui/DarkModeToggle';
 
 // Define type for the tracking variable
 type VisibleSection = { id: string; ratio: number };
@@ -18,6 +20,12 @@ const Header = () => {
 	const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 	// Keep track of the last explicitly set active section by the observer
 	const lastObservedSection = useRef<string>('');
+	// Get the current pathname for navigation highlighting
+	const pathname = usePathname();
+	const router = useRouter();
+
+	// Add isHomePage constant to check if we're on home page
+	const isHomePage = pathname === '/';
 
 	// Function to get section ID from hash
 	const getSectionIdFromHash = (hash: string): string => {
@@ -55,8 +63,11 @@ const Header = () => {
 		}
 	}, []);
 
-	// Setup Intersection Observer for section highlighting
+	// Setup Intersection Observer for section highlighting (only on homepage)
 	useEffect(() => {
+		// Only apply observation on homepage
+		if (pathname !== '/') return;
+
 		const sectionIds = [
 			...config.nav.main.map((link) => getSectionIdFromHash(link.href)),
 			'get-started',
@@ -74,30 +85,23 @@ const Header = () => {
 						mostVisibleSection = {
 							id: entry.target.id,
 							ratio: entry.intersectionRatio,
-						} as VisibleSection;
+						};
 					}
 				}
 			});
 
 			// Only update state if a section is clearly visible and different from current
-			if (
-				mostVisibleSection &&
-				(mostVisibleSection as VisibleSection).ratio > 0.2
-			) {
-				if (activeSection !== (mostVisibleSection as VisibleSection).id) {
-					setActiveSection((mostVisibleSection as VisibleSection).id);
-					lastObservedSection.current = (
-						mostVisibleSection as VisibleSection
-					).id;
+			if (mostVisibleSection && mostVisibleSection.ratio > 0.2) {
+				if (activeSection !== mostVisibleSection.id) {
+					setActiveSection(mostVisibleSection.id);
+					lastObservedSection.current = mostVisibleSection.id;
 				}
 			}
-			// No 'else' block: If nothing is clearly visible,
-			// rely on scroll listener to set Home, or keep the last active section.
 		};
 
 		const observerOptions: IntersectionObserverInit = {
 			root: null,
-			rootMargin: '0px', // Reverted to observe full viewport
+			rootMargin: '0px',
 			threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
 		};
 
@@ -111,11 +115,8 @@ const Header = () => {
 			sectionIds.forEach((id) => {
 				const element = document.getElementById(id);
 				if (element && currentObserver) {
-					// Added null check for currentObserver
 					sectionRefs.current[id] = element;
 					currentObserver.observe(element);
-				} else if (!element) {
-					console.warn(`Header Observer: Element with ID '${id}' not found.`);
 				}
 			});
 		}, 100);
@@ -129,7 +130,7 @@ const Header = () => {
 				}
 			});
 		};
-	}, []); // Keep dependencies empty for observer setup
+	}, [pathname, activeSection]);
 
 	// Toggle mobile menu
 	const handleToggleMobileMenu = () => {
@@ -139,6 +140,14 @@ const Header = () => {
 	// Scroll to top when clicking home link
 	const handleHomeClick = (e: React.MouseEvent) => {
 		e.preventDefault();
+
+		// If we're not on the homepage, navigate to it
+		if (!isHomePage) {
+			router.push('/');
+			return;
+		}
+
+		// If we're on homepage, just scroll to top
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 		if (window.location.hash) {
 			history.pushState(
@@ -165,12 +174,30 @@ const Header = () => {
 		return link;
 	});
 
+	// Check if a link is active based on pathname or section
+	const isLinkActive = (link: NavLink): boolean => {
+		// For home link
+		if (link.name === 'Home' && pathname === '/' && activeSection === '') {
+			return true;
+		}
+
+		// For hash links on homepage
+		if (pathname === '/' && link.href.startsWith('#')) {
+			const sectionId = getSectionIdFromHash(link.href);
+			return activeSection === sectionId;
+		}
+
+		// For page links
+		if (!link.href.startsWith('#')) {
+			return pathname === link.href;
+		}
+
+		return false;
+	};
+
 	// Render a navigation link
 	const renderNavLink = (link: NavLink, isMobile = false) => {
-		const sectionId = getSectionIdFromHash(link.href);
-		const isActive =
-			(link.name === 'Home' && activeSection === '') ||
-			activeSection === sectionId;
+		const isActive = isLinkActive(link);
 
 		return (
 			<Link
@@ -184,9 +211,11 @@ const Header = () => {
 						: undefined
 				}
 				className={`${
-					isMobile ? 'text-2xl' : 'text-base'
-				} font-medium transition-all duration-300 ${
-					isActive ? 'text-[#ffd400]' : 'text-white/80 hover:text-white'
+					isMobile ? 'text-2xl py-3' : 'text-base'
+				} font-medium transition-colors duration-300 ${
+					isActive
+						? 'text-[#ffd400] dark:text-[#ffd400]'
+						: 'text-white/80 dark:text-white hover:text-white dark:hover:text-white'
 				}`}
 				tabIndex={0}
 				aria-label={link.name}
@@ -198,13 +227,17 @@ const Header = () => {
 
 	// Get Started button link component
 	const GetStartedButton = ({ isMobile = false }: { isMobile?: boolean }) => {
-		const isActive = activeSection === 'get-started';
+		const isActive = pathname === '/create-account';
 		return (
 			<Link
-				href='#get-started'
-				className={`btn ${isMobile ? 'text-xl mt-4' : 'text-base'}
-						bg-blue-500 hover:bg-blue-600 border border-white
-						${isActive ? 'text-[#ffd400]' : 'text-white'}`}
+				href='/create-account'
+				className={`btn ${isMobile ? 'text-xl mt-6' : 'text-base'}
+					bg-blue-500 hover:bg-blue-600 dark:bg-[#1d1f23] dark:hover:bg-[#1d1f23] border border-white/20 dark:border-white px-6 py-2.5 rounded-full
+					transition-all duration-300 ${
+						isActive
+							? 'text-[#ffd400] dark:text-[#ffd400]'
+							: 'text-white dark:text-white'
+					}`}
 				onClick={isMobile ? handleToggleMobileMenu : undefined}
 				tabIndex={0}
 				aria-label='Get Started'
@@ -216,73 +249,85 @@ const Header = () => {
 
 	return (
 		<header
-			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-				isScrolled
-					? 'bg-background-dark/80 backdrop-blur-md shadow-md py-[15px]'
-					: 'bg-transparent py-[15px]'
-			}`}>
-			<div className='container flex items-center justify-between'>
-				{/* Logo */}
-				<Link
-					href='#'
-					onClick={handleHomeClick}
-					className='relative z-10 flex items-center space-x-2'
-					tabIndex={0}
-					aria-label='ApprentieMalin Home'>
-					<Image
-						src='/images/logo.png'
-						alt='ApprentieMalin Logo'
-						width={180}
-						height={40}
-						priority
-						className='h-auto w-auto'
-					/>
-				</Link>
+			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+				isScrolled || !isHomePage
+					? 'bg-background-dark/90 dark:bg-[#1d1f23]/90 backdrop-blur-md shadow-lg py-4'
+					: 'bg-transparent py-6'
+			}`}
+			style={{
+				transitionProperty: 'background-color, backdrop-filter, box-shadow, padding',
+			}}>
+			<div className='container mx-auto px-4 max-w-7xl'>
+				<div className='flex items-center justify-between'>
+					{/* Logo */}
+					<Link
+						href='/'
+						onClick={handleHomeClick}
+						className='relative z-10 flex items-center space-x-2'
+						tabIndex={0}
+						aria-label='ApprentieMalin Home'>
+						<Image
+							src='/images/logo.png'
+							alt='ApprentieMalin Logo'
+							width={160}
+							height={40}
+							priority
+							className='h-8 w-auto'
+						/>
+					</Link>
 
-				{/* Desktop Navigation */}
-				<nav className='hidden md:flex items-center space-x-8'>
-					{navLinks.map((link) => renderNavLink(link))}
-					<GetStartedButton />
-				</nav>
+					{/* Desktop Navigation */}
+					<nav className='hidden md:flex items-center space-x-8'>
+						{navLinks.map((link) => renderNavLink(link))}
+						<DarkModeToggle className='mr-2' />
+						<GetStartedButton />
+					</nav>
 
-				{/* Mobile Menu Button */}
-				<button
-					className='md:hidden relative z-10 p-2'
-					onClick={handleToggleMobileMenu}
-					aria-label='Toggle mobile menu'
-					tabIndex={0}>
-					<div
-						className={`w-6 h-0.5 bg-white mb-1.5 transition-all ${
-							isMobileMenuOpen ? 'rotate-45 translate-y-[7px]' : ''
-						}`}></div>
-					<div
-						className={`w-6 h-0.5 bg-white mb-1.5 transition-all ${
-							isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
-						}`}></div>
-					<div
-						className={`w-6 h-0.5 bg-white transition-all ${
-							isMobileMenuOpen ? '-rotate-45 translate-y-[-7px]' : ''
-						}`}></div>
-				</button>
+					{/* Mobile Menu Button */}
+					<button
+						className='md:hidden relative z-10 p-2'
+						onClick={handleToggleMobileMenu}
+						aria-label='Toggle mobile menu'
+						tabIndex={0}>
+						<div
+							className={`w-6 h-0.5 bg-white dark:bg-white mb-1.5 transition-all duration-500 ${
+								isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
+							}`}></div>
+						<div
+							className={`w-6 h-0.5 bg-white dark:bg-white mb-1.5 transition-all duration-500 ${
+								isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
+							}`}></div>
+						<div
+							className={`w-6 h-0.5 bg-white dark:bg-white transition-all duration-500 ${
+								isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
+							}`}></div>
+					</button>
 
-				{/* Mobile Menu */}
-				<AnimatePresence>
-					{isMobileMenuOpen && (
-						<motion.div
-							initial={{ x: '100%' }}
-							animate={{ x: 0 }}
-							exit={{ x: '100%' }}
-							transition={{ type: 'tween' }}
-							className='fixed inset-0 z-40 bg-background-dark/95 backdrop-blur-lg md:hidden'>
-							<div className='flex flex-col items-center justify-center h-full'>
-								<nav className='flex flex-col items-center space-y-6'>
-									{navLinks.map((link) => renderNavLink(link, true))}
-									<GetStartedButton isMobile={true} />
-								</nav>
-							</div>
-						</motion.div>
-					)}
-				</AnimatePresence>
+					{/* Mobile Menu */}
+					<AnimatePresence>
+						{isMobileMenuOpen && (
+							<motion.div
+								initial={{ opacity: 0, y: -20 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -20 }}
+								transition={{ duration: 0.3 }}
+								className='fixed inset-0 z-40 bg-background-dark/98 dark:bg-[#1d1f23]/98 backdrop-blur-lg md:hidden pt-20'
+								style={{
+									transition: 'background-color 0.5s ease-in-out',
+								}}>
+								<div className='flex flex-col items-center justify-start h-full p-8'>
+									<nav className='flex flex-col items-center space-y-4'>
+										{navLinks.map((link) => renderNavLink(link, true))}
+										<div className='flex items-center space-x-4 mt-4'>
+											<DarkModeToggle />
+											<GetStartedButton isMobile={true} />
+										</div>
+									</nav>
+								</div>
+							</motion.div>
+						)}
+					</AnimatePresence>
+				</div>
 			</div>
 		</header>
 	);

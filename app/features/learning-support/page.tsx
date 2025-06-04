@@ -4,31 +4,8 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { useRef, useEffect } from 'react';
 
 const LearningSupport = () => {
-	// For parallax scroll effect
-	const pageRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		const handleScroll = () => {
-			if (pageRef.current) {
-				const scrollY = window.scrollY;
-				const sections = pageRef.current.querySelectorAll('.parallax-section');
-
-				sections.forEach((section, index) => {
-					const speed = index % 2 === 0 ? 0.1 : 0.05;
-					(section as HTMLElement).style.transform = `translateY(${
-						scrollY * speed
-					}px)`;
-				});
-			}
-		};
-
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
-	}, []);
-
 	// Animation variants
 	const fadeInUp = {
 		hidden: { opacity: 0, y: 60 },
@@ -60,9 +37,7 @@ const LearningSupport = () => {
 	}));
 
 	return (
-		<div
-			className='relative overflow-hidden bg-gradient-to-b from-blue-50 to-white'
-			ref={pageRef}>
+		<div className='relative overflow-hidden bg-gradient-to-b from-blue-50 to-white'>
 			<Header />
 
 			{/* Floating bubbles background */}

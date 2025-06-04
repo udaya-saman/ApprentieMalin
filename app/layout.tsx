@@ -1,33 +1,58 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Suspense } from 'react';
+import { preloadModules } from './config/component-loader';
+
+// Styles
 import './globals.css';
+import 'swiper/css';
+import BackToTop from './components/ui/BackToTop';
+import VerticalNavWrapper from './components/ui/VerticalNavWrapper';
+import Header from './components/Header';
+import PageAnimationWrapper from './components/ui/PageAnimationWrapper';
 
-const inter = Inter({
-	subsets: ['latin'],
-	variable: '--font-inter',
-	display: 'swap',
-});
-
+// Metadata
 export const metadata: Metadata = {
-	title: 'ApprentieMalin - AI-Powered Academic Support for Students',
-	description:
-		'ApprentieMalin offers personalized academic support for primary and middle school students through WhatsApp. Get instant homework help, explanations, and interactive learning anytime, anywhere.',
-	keywords:
-		'AI tutor, academic support, homework help, primary school, middle school, WhatsApp tutor, personalized learning, ApprentieMalin',
+	title: 'Apprenti Malin',
+	description: 'Learn smarter, not harder',
 };
 
-interface RootLayoutProps {
-	children: React.ReactNode;
-}
+// Font optimization
+const fontSans = { subsets: ['latin'], display: 'swap' };
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
+	// Preload heavy modules
+	if (typeof window !== 'undefined') {
+		preloadModules();
+	}
+
 	return (
-		<html
-			lang='en'
-			className={`${inter.variable} scroll-smooth`}
-			style={{ scrollPaddingTop: '60px' }}>
-			<body className='bg-background-dark font-sans text-white overflow-x-hidden'>
-				{children}
+		<html lang='en' className='scroll-smooth'>
+			<head>
+				<link
+					rel='preload'
+					href='/fonts/your-main-font.woff2'
+					as='font'
+					type='font/woff2'
+					crossOrigin='anonymous'
+				/>
+				<link rel='preconnect' href='https://fonts.googleapis.com' />
+				<link
+					rel='preconnect'
+					href='https://fonts.gstatic.com'
+					crossOrigin='anonymous'
+				/>
+			</head>
+			<body className='min-h-screen bg-background antialiased'>
+				<Suspense fallback={null}>
+					<Header />
+					<PageAnimationWrapper>{children}</PageAnimationWrapper>
+					<VerticalNavWrapper />
+					<BackToTop />
+				</Suspense>
 			</body>
 		</html>
 	);

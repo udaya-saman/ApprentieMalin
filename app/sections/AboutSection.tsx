@@ -20,34 +20,58 @@ const AboutSection = () => {
 	// Content data
 	const aboutPoints = [
 		{
-			title: 'Smart AI Support',
+			title: 'Personalized Learning',
 			description:
-				'Our AI tutor understands school curriculum and provides personalized explanations.',
-			icon: '🧠',
+				"AI guidance that adapts to your child's learning style for better understanding.",
+			icon: (
+				<img
+					src='/images/icon/ab_icon1.png'
+					alt='Personalized Learning'
+					className='w-16 h-16 object-cover rounded-lg'
+				/>
+			),
+			bgColor: 'bg-pink-50',
+			hoverColor: 'hover:bg-pink-100',
+		},
+		{
+			title: 'Interactive Voice',
+			description:
+				'Voice assistance that makes learning feel like talking to a real tutor.',
+			icon: (
+				<img
+					src='/images/icon/ab_icon2.png'
+					alt='Interactive Voice'
+					className='w-16 h-16 object-cover rounded-lg'
+				/>
+			),
 			bgColor: 'bg-blue-50',
 			hoverColor: 'hover:bg-blue-100',
 		},
 		{
-			title: 'On WhatsApp',
+			title: 'Language Practice',
 			description:
-				'No extra apps needed! Just chat with our assistant on the platform you already use.',
-			icon: '📱',
+				'Build confidence through natural conversation and interactive language learning.',
+			icon: (
+				<img
+					src='/images/icon/ab_icon3.png'
+					alt='Language Practice'
+					className='w-16 h-16 object-cover rounded-lg'
+				/>
+			),
 			bgColor: 'bg-green-50',
 			hoverColor: 'hover:bg-green-100',
 		},
 		{
-			title: 'Safe for Children',
+			title: '24/7 Availability',
 			description:
-				'Designed with student safety in mind, with content filtering and age-appropriate responses.',
-			icon: '🛡️',
-			bgColor: 'bg-red-50',
-			hoverColor: 'hover:bg-red-100',
-		},
-		{
-			title: 'All Subjects Covered',
-			description:
-				'From math to science, history to literature - help across the primary and middle school curriculum.',
-			icon: '📚',
+				"Always ready to help when traditional tutoring isn't an option.",
+			icon: (
+				<img
+					src='/images/icon/ab_icon4.png'
+					alt='24/7 Availability'
+					className='w-16 h-16 object-cover rounded-lg'
+				/>
+			),
 			bgColor: 'bg-yellow-50',
 			hoverColor: 'hover:bg-yellow-100',
 		},
@@ -57,8 +81,8 @@ const AboutSection = () => {
 		<Section id='about' variant='white' className='relative'>
 			{/* Section title */}
 			<SectionTitle
-				title='About ApprentieMalin'
-				subtitle='We help students master their schoolwork with friendly AI-powered tutoring that makes learning easier and more accessible.'
+				title='Why ApprentieMalin?'
+				subtitle='Children often struggle with homework, and parents are too busy to help consistently. ApprentieMalin makes learning more accessible, less stressful, and more effective through:'
 			/>
 
 			{/* About cards */}
@@ -77,7 +101,7 @@ const AboutSection = () => {
 							variant='glass'
 							className={`h-full ${point.bgColor} ${point.hoverColor} transition-all duration-300 border-2 border-blue-200`}>
 							<div className='flex flex-col items-center text-center h-full'>
-								<div className='text-5xl mb-4 transform transition-transform duration-300 hover:scale-110'>
+								<div className='mb-4 transform transition-transform duration-300 hover:scale-110'>
 									{point.icon}
 								</div>
 								<h3 className='text-xl font-bold mb-2 text-blue-800'>
@@ -95,7 +119,7 @@ const AboutSection = () => {
 			<div className='absolute bottom-20 -right-24 w-56 h-56 bg-blue-400/20 rounded-full blur-3xl animate-pulse' />
 
 			{/* Wave divider at bottom */}
-			<WaveDivider position='bottom' />
+			<WaveDivider position='bottom' color='#ffffff' />
 		</Section>
 	);
 };

@@ -132,8 +132,6 @@ const MagicalMascot = ({
 
 const HowItWorksSection = () => {
 	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-	const [scrollTriggered, setScrollTriggered] = useState(false);
-	const [lastScrollTime, setLastScrollTime] = useState(0);
 
 	// Update mouse position on move
 	useEffect(() => {
@@ -144,30 +142,6 @@ const HowItWorksSection = () => {
 		window.addEventListener('mousemove', handleMouseMove);
 		return () => window.removeEventListener('mousemove', handleMouseMove);
 	}, []);
-
-	// Handle scroll events with debounce
-	const handleScroll = useCallback(
-		debounce(() => {
-			const now = Date.now();
-			if (now - lastScrollTime > 500) {
-				// Prevent triggering too frequently
-				setScrollTriggered(true);
-				setLastScrollTime(now);
-
-				// Reset the trigger after animation duration
-				setTimeout(() => {
-					setScrollTriggered(false);
-				}, 1500); // Slightly longer than animation duration
-			}
-		}, 50), // 50ms debounce
-		[lastScrollTime],
-	);
-
-	// Add scroll event listener
-	useEffect(() => {
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
-	}, [handleScroll]);
 
 	// Enhanced animation variants
 	const containerVariants = {
@@ -214,51 +188,29 @@ const HowItWorksSection = () => {
 	const features = [
 		{
 			id: 1,
-			title: 'Start Learning Journey',
-			description: 'Begin your educational adventure with a simple chat',
+			title: 'Step 2: Log in to your space',
+			description:
+				'Access your personalized dashboard where all tools are available.',
 			icon: '💬',
 			position: 'top',
 			color: 'from-blue-400 to-cyan-300',
 		},
 		{
 			id: 2,
-			title: 'Smart Assistance',
-			description: 'AI-powered help for all your academic needs',
+			title: 'Step 1: Sign up on ApprentieMalin.fr',
+			description: 'Create your account and start your free 10-day trial.',
 			icon: '🤖',
 			position: 'top-left',
 			color: 'from-purple-400 to-pink-300',
 		},
 		{
 			id: 3,
-			title: 'Quick Integration',
-			description: 'Get started in minutes, no complex setup',
+			title: 'Step 3: Get help your way',
+			description:
+				'Choose between AI Chat for written help or Callbots for interactive voice assistance.',
 			icon: '⚡',
 			position: 'top-right',
 			color: 'from-yellow-400 to-orange-300',
-		},
-		{
-			id: 4,
-			title: 'Track Progress',
-			description: 'Monitor your learning journey with detailed insights',
-			icon: '📊',
-			position: 'bottom-left',
-			color: 'from-green-400 to-emerald-300',
-		},
-		{
-			id: 5,
-			title: 'Instant Support',
-			description: '24/7 assistance for your study questions',
-			icon: '🎯',
-			position: 'bottom',
-			color: 'from-red-400 to-rose-300',
-		},
-		{
-			id: 6,
-			title: 'Smart Learning',
-			description: 'Personalized responses that adapt to your needs',
-			icon: '🧠',
-			position: 'bottom-right',
-			color: 'from-indigo-400 to-violet-300',
 		},
 	];
 
@@ -267,11 +219,11 @@ const HowItWorksSection = () => {
 			'absolute transform transition-all duration-500 ease-in-out';
 		switch (position) {
 			case 'top':
-				return `${baseClasses} -top-[20px] left-[35%] -translate-x-1/2`;
+				return `${baseClasses} -top-[-325px] left-[35%] -translate-x-1/2`;
 			case 'top-left':
-				return `${baseClasses} top-[20%] -left-24 -translate-x-1/2`;
+				return `${baseClasses} top-[15px] -left-24 -translate-x-1/2`;
 			case 'top-right':
-				return `${baseClasses} top-[20%] -right-24 translate-x-1/2`;
+				return `${baseClasses} top-[15px] -right-24 translate-x-1/2`;
 			case 'bottom-left':
 				return `${baseClasses} bottom-[20%] -left-24 -translate-x-1/2`;
 			case 'bottom':
@@ -297,36 +249,43 @@ const HowItWorksSection = () => {
 		<Section
 			id='how-it-works'
 			variant='blue'
-			className='relative py-20 overflow-hidden'>
+			className='relative pt-[150px] pb-0 overflow-hidden'
+			style={{
+				background: 'linear-gradient(135deg, #0071ed 0%, #00a2ff 100%)',
+			}}>
+			{/* Background glassmorphism effects */}
+			<div className='absolute inset-0 overflow-hidden pointer-events-none'>
+				<div className='absolute top-0 left-1/4 w-[500px] h-[500px] bg-white/10 rounded-full mix-blend-overlay filter blur-3xl animate-pulse' />
+				<div className='absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-white/10 rounded-full mix-blend-overlay filter blur-3xl animate-pulse delay-150' />
+				<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 rounded-full mix-blend-overlay filter blur-3xl animate-pulse delay-300' />
+				<div className="absolute inset-0 bg-[url('/stars.png')] opacity-10 animate-twinkle" />
+			</div>
+
 			<div className='container mx-auto px-4'>
 				<SectionTitle
 					title='How It Works?'
 					subtitle='Discover how our AI-powered learning assistant helps you master any subject with personalized support'
-					titleClassName='text-white text-5xl mb-4'
-					subtitleClassName='text-white/90 text-xl max-w-3xl mx-auto'
+					titleClassName='text-white text-5xl mb-4 !text-white'
+					subtitleClassName='text-white/90 text-xl max-w-5xl mx-auto'
 				/>
 
-				<div className='mt-20 relative max-w-7xl mx-auto'>
+				<div className='mt-[130px] relative max-w-7xl mx-auto'>
 					<motion.div
 						variants={containerVariants}
 						initial='hidden'
 						whileInView='visible'
 						viewport={{ once: true, margin: '-100px' }}
 						className='relative aspect-square max-w-[800px] mx-auto'>
-						{/* Animated Background Elements */}
-						<div className='absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse' />
-						<div className='absolute inset-0 bg-gradient-to-l from-cyan-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse delay-1000' />
-
 						{/* Center Robot Image with Animation */}
 						<motion.div
-							className='absolute inset-0 flex items-center justify-center z-10'
+							className='absolute top-[-90px] left-0 right-0 flex items-start justify-center z-10'
 							initial='initial'
 							whileHover='hover'
 							variants={robotVariants}>
 							<div className='relative w-[400px] h-[400px] group'>
 								{/* Robot Image */}
 								<Image
-									src='/images/howIt.png'
+									src='/images/sign-up.png'
 									alt='ApprentieMailin Bot'
 									fill
 									className='object-contain drop-shadow-2xl transition-transform duration-500'
@@ -373,15 +332,14 @@ const HowItWorksSection = () => {
 										transition: { duration: 0.3 },
 									}}
 									className={`${getPositionClasses(feature.position)} 
-                                    group w-64 cursor-pointer`}>
+                                    group w-64 cursor-pointer scale-[1.15]`}>
 									<div
-										className={`
-										relative p-5 rounded-2xl backdrop-blur-xl
-										border border-white/20 shadow-xl
-										bg-white/10
+										className={`										relative p-5 rounded-2xl backdrop-blur-xl
+										border border-white/20 dark:border-white shadow-xl
+										bg-white/10 dark:bg-[#1e1f23]
 										transition-all duration-500 ease-out
 										hover:shadow-2xl hover:border-white/30
-										bg-gradient-to-br ${feature.color} opacity-90
+										bg-gradient-to-br ${feature.color} dark:bg-none opacity-90
 										text-center transform-gpu
 									`}>
 										<div className='absolute inset-0 rounded-2xl bg-gradient-to-r from-white/50 to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-500' />
@@ -416,15 +374,8 @@ const HowItWorksSection = () => {
 			</div>
 
 			{/* Enhanced Background Decorations */}
-			<div className='absolute -bottom-20 -left-20 w-96 h-96 bg-gradient-to-r from-blue-400/30 to-purple-400/30 rounded-full blur-3xl -z-10 animate-pulse' />
+			<div className='absolute -bottom-2 -left-20 w-96 h-96 bg-gradient-to-r from-blue-400/30 to-purple-400/30 rounded-full blur-3xl -z-10 animate-pulse' />
 			<div className='absolute top-1/4 -right-20 w-80 h-80 bg-gradient-to-l from-cyan-400/30 to-blue-400/30 rounded-full blur-3xl -z-10 animate-pulse delay-700' />
-
-			{/* Magical Mascot effect - now only triggered by scroll */}
-			<MagicalMascot
-				isVisible={scrollTriggered}
-				x={mousePosition.x}
-				y={mousePosition.y}
-			/>
 		</Section>
 	);
 };

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import config from '../config';
 import { FooterLink } from '../types';
@@ -24,6 +25,14 @@ const Footer = () => {
 	};
 
 	const currentYear = new Date().getFullYear();
+	
+	// Social media icon mapping
+	const socialIcons = {
+		twitter: '/images/icon/sm_icon1.png',
+		facebook: '/images/icon/sm_icon2.png',
+		instagram: '/images/icon/sm_icon3.png',
+		linkedin: '/images/icon/sm_icon4.png',
+	};
 	
 	// Prepare footer sections from config
 	const footerSections = [
@@ -50,7 +59,7 @@ const Footer = () => {
 	];
 
 	return (
-		<footer className='bg-navy-500 pt-16 pb-8'>
+		<footer className='bg-navy-500 dark:bg-[#18191c] pt-16 pb-8'>
 			<div className='container'>
 				<motion.div
 					variants={containerVariants}
@@ -77,10 +86,16 @@ const Footer = () => {
 								<Link
 									key={platform}
 									href={url}
-									className='w-10 h-10 flex items-center justify-center rounded-full bg-whiteAlpha-100 text-white hover:bg-whiteAlpha-200 transition-colors'
+									className='w-10 h-10 flex items-center justify-center rounded-full bg-whiteAlpha-100 hover:bg-whiteAlpha-200 transition-colors'
 									aria-label={`Follow us on ${platform}`}
 									tabIndex={0}>
-									{platform[0].toUpperCase()}
+									<Image
+										src={socialIcons[platform as keyof typeof socialIcons]}
+										alt={`${platform} icon`}
+										width={32}
+										height={32}
+										className='w-8 h-8'
+									/>
 								</Link>
 							))}
 						</div>

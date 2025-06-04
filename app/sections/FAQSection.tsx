@@ -49,6 +49,38 @@ const FAQSection = () => {
 		return () => clearInterval(intervalId);
 	}, []);
 
+	// Auto-close FAQ when navigating to another section
+	useEffect(() => {
+		const handleSectionChange = () => {
+			// Get all sections except FAQ
+			const sections = document.querySelectorAll('section:not([id="faq"])');
+			
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						// If any other section is visible and we have an open FAQ, close it
+						if (entry.isIntersecting && entry.intersectionRatio > 0.5 && openIndex !== null) {
+							setOpenIndex(null);
+						}
+					});
+				},
+				{
+					threshold: 0.5,
+					rootMargin: '-10% 0px -10% 0px'
+				}
+			);
+
+			sections.forEach((section) => observer.observe(section));
+
+			return () => {
+				sections.forEach((section) => observer.unobserve(section));
+			};
+		};
+
+		const cleanup = handleSectionChange();
+		return cleanup;
+	}, [openIndex]);
+
 	// Toggle FAQ open/close
 	const handleToggleFAQ = (index: number) => {
 		setOpenIndex(openIndex === index ? null : index);
@@ -73,10 +105,15 @@ const FAQSection = () => {
 	};
 
 	return (
-		<Section id='faq' variant='white' className='relative'>
+		<Section
+			id='faq'
+			variant='white'
+			className='relative bg-gradient-to-br from-[#13274d] to-[#1e3a6e] text-white py-24'>
 			<SectionTitle
 				title='Frequently Asked Questions'
 				subtitle='Find answers to common questions about ApprentieMalin'
+				titleClassName='text-white'
+				subtitleClassName='text-white/80'
 			/>
 
 			<div className='grid grid-cols-1 lg:grid-cols-2 gap-0.5 mt-12'>
@@ -92,26 +129,24 @@ const FAQSection = () => {
 						<motion.div
 							variants={cardVariants}
 							whileHover='hover'
-							className={`${
-								currentGradients[index] || gradients[0]
-							} backdrop-blur-sm rounded-xl p-6 shadow-sm border border-blue-100/20 transition-all duration-700 cursor-pointer
+							className={`backdrop-blur-sm rounded-xl p-6 shadow-sm border border-white/10 transition-all duration-700 cursor-pointer bg-white/5
 								${
 									openIndex === index
-										? 'ring-2 ring-blue-200 shadow-lg'
-										: 'hover:bg-blue-50/30'
+										? 'ring-2 ring-white/20 shadow-lg'
+										: 'hover:bg-white/10'
 								}`}
 							onClick={() => handleToggleFAQ(index)}>
 							<div className='flex justify-between items-start'>
-								<h3 className='text-lg font-semibold pr-4 text-[#13274d]'>
+								<h3 className='text-lg font-semibold pr-4 text-white'>
 									{item.question}
 								</h3>
 								<motion.button
-									className={`mt-1 bg-white/70 hover:bg-white rounded-full h-6 w-6 flex items-center justify-center flex-shrink-0 transition-colors duration-200
-										${openIndex === index ? 'bg-white' : ''}`}
+									className={`mt-1 bg-white/10 hover:bg-white/20 rounded-full h-6 w-6 flex items-center justify-center flex-shrink-0 transition-colors duration-200
+										${openIndex === index ? 'bg-white/20' : ''}`}
 									aria-label={
 										openIndex === index ? 'Close answer' : 'View answer'
 									}
-									onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+									onClick={(e) => {
 										e.stopPropagation();
 										handleToggleFAQ(index);
 									}}
@@ -120,7 +155,7 @@ const FAQSection = () => {
 									<motion.span
 										animate={{ rotate: openIndex === index ? 45 : 0 }}
 										transition={{ duration: 0.2 }}
-										className={`text-[#13274d] font-medium`}>
+										className='text-white font-medium'>
 										{openIndex === index ? '✕' : '+'}
 									</motion.span>
 								</motion.button>
@@ -133,7 +168,7 @@ const FAQSection = () => {
 										exit={{ opacity: 0, height: 0, y: -10 }}
 										transition={{ duration: 0.2, ease: 'easeInOut' }}
 										className='overflow-hidden'>
-										<p className='mt-4 text-[#13274d] text-base leading-relaxed flex-grow bg-white/60 p-4 rounded-lg'>
+										<p className='mt-4 text-white/80 text-base leading-relaxed flex-grow bg-white/5 backdrop-blur-sm p-4 rounded-lg'>
 											{item.answer}
 										</p>
 									</motion.div>
@@ -151,12 +186,12 @@ const FAQSection = () => {
 				viewport={{ once: true }}
 				transition={{ delay: 0.3 }}
 				className='mt-16 text-center'>
-				<p className='text-[#13274d] mb-4 text-lg'>
+				<p className='text-white/90 mb-4 text-lg'>
 					Still have questions? We're here to help!
 				</p>
 				<motion.a
 					href={`mailto:${config.contact.email}`}
-					className='inline-block text-[#13274d] hover:text-[#13274d]/80 font-medium underline-offset-4 hover:underline transition-colors duration-200'
+					className='inline-block text-white hover:text-white/80 font-medium underline-offset-4 hover:underline transition-colors duration-200'
 					tabIndex={0}
 					aria-label='Contact our support team by email'
 					whileHover={{ scale: 1.02 }}

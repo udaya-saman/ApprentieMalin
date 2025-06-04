@@ -38,3 +38,14 @@ export interface FAQItemType {
 	question: string;
 	answer: string;
 }
+
+export interface FeatureType {
+	title: string;
+	description: string;
+	details?: {
+		howItWorks: string;
+		benefits: string;
+		bestFor: string;
+	};
+	icon: string;
+}

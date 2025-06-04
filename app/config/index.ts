@@ -32,11 +32,13 @@ export const socialMedia = {
 export const navigation = {
 	main: [
 		{ name: 'Home', href: '#' },
-		{ name: 'About', href: '#about' },
-		{ name: 'How It Works', href: '#how-it-works' },
-		{ name: 'Features', href: '#features' },
-		{ name: 'Testimonials', href: '#testimonials' },
-		{ name: 'FAQ', href: '#faq' },
+		{ name: 'About', href: '/about' },
+		{ name: 'Services', href: '/services' },
+		{ name: 'Features', href: '/features' },
+		{ name: 'Pricing', href: '/pricing' },
+		{ name: 'Client Area', href: '/client-area' },
+		{ name: 'FAQ', href: '/faq' },
+		{ name: 'Contact', href: '/contact' },
 	],
 	legal: [
 		{ name: 'Privacy Policy', href: '/privacy' },
@@ -48,40 +50,44 @@ export const navigation = {
 export const features = {
 	main: [
 		{
-			title: 'Friendly AI Tutor on WhatsApp',
-			description:
-				'Get instant homework help and explanations from our AI tutor directly through WhatsApp.',
-			icon: '📱',
+			title: 'AI Help via Integrated Chat',
+			description: 'What it does: Provides written assistance for all subjects',
+			details: {
+				howItWorks: 'Send questions or photos of exercises',
+				benefits: 'Step-by-step guidance, adapts to emotions, available 24/7',
+				bestFor: 'Students who prefer reading explanations and working at their own pace'
+			},
+			icon: '💬',
 		},
 		{
-			title: '24/7 Learning Help',
-			description:
-				'Access learning support anytime, day or night, whenever curiosity strikes or homework is due.',
-			icon: '💡',
+			title: 'Homework Help Callbot',
+			description: 'What it does: Provides voice-based interactive assistance',
+			details: {
+				howItWorks: 'Call directly from your ApprentieMalin space',
+				benefits: 'Dynamic verbal guidance, perfect for auditory learners',
+				bestFor: 'Students who learn better through conversation and explanation'
+			},
+			icon: '📞',
 		},
 		{
-			title: 'Instant Explanations & Practice',
-			description:
-				'Receive clear explanations immediately and reinforce learning with interactive practice exercises.',
-			icon: '✨',
+			title: 'Language Learning Callbot',
+			description: 'What it does: Interactive oral practice for foreign languages',
+			details: {
+				howItWorks: 'Engage in conversations on various topics',
+				benefits: 'Builds confidence, improves pronunciation, provides instant feedback',
+				bestFor: 'Developing real-world language skills through practice'
+			},
+			icon: '🗣️',
 		},
 		{
-			title: 'Curriculum-Aligned Responses',
-			description:
-				'Answers and explanations are aligned with primary and middle school curricula for relevance.',
-			icon: '📚',
-		},
-		{
-			title: 'Safe for Children',
-			description:
-				'A secure environment with content filtering and age-appropriate interactions.',
-			icon: '🛡️',
-		},
-		{
-			title: 'Parent Overview & Reporting',
-			description:
-				"Parents can easily track their child's progress and learning activity through simple reports.",
-			icon: '📊',
+			title: '"Smart Review" Feature',
+			description: 'What it does: Provides quick and targeted revisions before tests',
+			details: {
+				howItWorks: 'Ask for a review on any topic in your curriculum',
+				benefits: 'Consolidates knowledge, perfect for last-minute studying',
+				bestFor: 'Test preparation and knowledge reinforcement'
+			},
+			icon: '🎯',
 		},
 	],
 };

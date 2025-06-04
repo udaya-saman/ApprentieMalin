@@ -92,14 +92,17 @@ const Header = () => {
 				}
 			});
 
-			// Use explicit checks and early return to avoid TypeScript issues
-			if (!mostVisibleSection) return;
-			if (mostVisibleSection.ratio <= 0.2) return;
-			if (activeSection === mostVisibleSection.id) return;
+			// Force TypeScript to understand the type using explicit assertion
+			const validSection = mostVisibleSection as VisibleSection | null;
+			
+			if (validSection === null) return;
+			if ((validSection as VisibleSection).ratio <= 0.2) return;
+			if (activeSection === (validSection as VisibleSection).id) return;
 
-			// At this point, we know mostVisibleSection is valid
-			setActiveSection(mostVisibleSection.id);
-			lastObservedSection.current = mostVisibleSection.id;
+			// Use explicit type assertions for all accesses
+			const sectionId = (validSection as VisibleSection).id;
+			setActiveSection(sectionId);
+			lastObservedSection.current = sectionId;
 		};
 
 		const observerOptions: IntersectionObserverInit = {

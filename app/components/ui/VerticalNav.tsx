@@ -245,7 +245,7 @@ const VerticalNav = () => {
 
 		const handleScroll = () => {
 			let maxVisibility = 0;
-			let mostVisibleSection: Element | null = null;
+			let mostVisibleSection: HTMLElement | null = null;
 
 			navItems.forEach(({ id }) => {
 				const section = document.getElementById(id);
@@ -262,12 +262,13 @@ const VerticalNav = () => {
 
 			if (!mostVisibleSection || maxVisibility <= 0.3) return;
 
-			// At this point, mostVisibleSection is guaranteed to be a non-null Element
-			setActiveSection(mostVisibleSection.id);
+			// At this point, mostVisibleSection is guaranteed to be a non-null HTMLElement
+			const sectionId = (mostVisibleSection as HTMLElement).id;
+			setActiveSection(sectionId);
 
 			// Only check background in normal mode, not in dark mode
 			if (!isDarkMode) {
-				setIsWhiteBackground(checkBackground(mostVisibleSection));
+				setIsWhiteBackground(checkBackground(mostVisibleSection as HTMLElement));
 			}
 		};
 

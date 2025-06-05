@@ -16,14 +16,14 @@ import 'swiper/css/pagination';
 const TestimonialsSection = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [isClient, setIsClient] = useState(false);
-	const swiperRef = useRef(null);
+	const swiperRef = useRef<any>(null);
 	const totalSlides = config.testimonials.length;
 
 	useEffect(() => {
 		setIsClient(true);
 	}, []);
 
-	const handleDotClick = (index) => {
+	const handleDotClick = (index: number) => {
 		if (swiperRef.current && swiperRef.current.swiper) {
 			swiperRef.current.swiper.slideToLoop(index);
 		}

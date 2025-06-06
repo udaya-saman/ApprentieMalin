@@ -16,7 +16,9 @@ import 'swiper/css/pagination';
 const TestimonialsSection = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [isClient, setIsClient] = useState(false);
-	const swiperRef = useRef<any>(null);
+	const swiperRef = useRef<{
+		swiper?: { slideToLoop: (index: number) => void };
+	}>(null);
 	const totalSlides = config.testimonials.length;
 
 	useEffect(() => {

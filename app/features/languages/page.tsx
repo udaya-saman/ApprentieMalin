@@ -297,7 +297,7 @@ const MultipleLanguages = () => {
 						<motion.p
 							className='text-xl text-purple-800/70 mb-8'
 							variants={fadeInUp}>
-							Start your learning journey in the language you're most
+							Start your learning journey in the language you&apos;re most
 							comfortable with.
 						</motion.p>
 
@@ -318,4 +318,3 @@ const MultipleLanguages = () => {
 };
 
 export default MultipleLanguages;
- 

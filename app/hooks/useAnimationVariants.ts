@@ -13,15 +13,14 @@ interface AnimationOptions {
 // Enhanced easing functions for more dynamic animations
 const smoothEasing = [0.25, 0.46, 0.45, 0.94];
 const dynamicEasing = [0.4, 0, 0.2, 1];
-const springEasing = [0.26, 0.08, 0.25, 1];
 
 const useAnimationVariants = () => {
 	// Enhanced fade up animation with better spring physics
 	const fadeUp = (options: AnimationOptions = {}): Variants => ({
-		hidden: { 
-			opacity: 0, 
+		hidden: {
+			opacity: 0,
 			y: 60,
-			scale: 0.95
+			scale: 0.95,
 		},
 		visible: {
 			opacity: 1,
@@ -40,9 +39,9 @@ const useAnimationVariants = () => {
 
 	// Enhanced fade in animation with subtle scale
 	const fadeIn = (options: AnimationOptions = {}): Variants => ({
-		hidden: { 
+		hidden: {
 			opacity: 0,
-			scale: 0.98
+			scale: 0.98,
 		},
 		visible: {
 			opacity: 1,
@@ -71,10 +70,10 @@ const useAnimationVariants = () => {
 
 	// Enhanced scale animation with spring physics
 	const scale = (options: AnimationOptions = {}): Variants => ({
-		hidden: { 
-			opacity: 0, 
+		hidden: {
+			opacity: 0,
 			scale: 0.8,
-			y: 20
+			y: 20,
 		},
 		visible: {
 			opacity: 1,
@@ -92,10 +91,10 @@ const useAnimationVariants = () => {
 
 	// Enhanced slide in from left with bounce
 	const slideInLeft = (options: AnimationOptions = {}): Variants => ({
-		hidden: { 
-			opacity: 0, 
+		hidden: {
+			opacity: 0,
 			x: -80,
-			scale: 0.95
+			scale: 0.95,
 		},
 		visible: {
 			opacity: 1,
@@ -113,10 +112,10 @@ const useAnimationVariants = () => {
 
 	// Enhanced slide in from right with bounce
 	const slideInRight = (options: AnimationOptions = {}): Variants => ({
-		hidden: { 
-			opacity: 0, 
+		hidden: {
+			opacity: 0,
 			x: 80,
-			scale: 0.95
+			scale: 0.95,
 		},
 		visible: {
 			opacity: 1,
@@ -134,10 +133,10 @@ const useAnimationVariants = () => {
 
 	// New: Enhanced slide up animation with more dramatic effect
 	const slideUp = (options: AnimationOptions = {}): Variants => ({
-		hidden: { 
-			opacity: 0, 
+		hidden: {
+			opacity: 0,
 			y: 100,
-			scale: 0.9
+			scale: 0.9,
 		},
 		visible: {
 			opacity: 1,
@@ -155,10 +154,10 @@ const useAnimationVariants = () => {
 
 	// New: Slide down animation for variety
 	const slideDown = (options: AnimationOptions = {}): Variants => ({
-		hidden: { 
-			opacity: 0, 
+		hidden: {
+			opacity: 0,
 			y: -80,
-			scale: 0.95
+			scale: 0.95,
 		},
 		visible: {
 			opacity: 1,

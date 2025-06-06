@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Section from '../components/ui/Section';
-import SectionTitle from '../components/ui/SectionTitle';
 
 interface PricingPlan {
 	title: string;
@@ -57,53 +56,6 @@ const pricingPlans: PricingPlan[] = [
 ];
 
 const PricingSection = () => {
-	// Enhanced animation variants
-	const titleVariants = {
-		hidden: {
-			opacity: 0,
-			y: -30,
-			scale: 0.95,
-		},
-		visible: {
-			opacity: 1,
-			y: 0,
-			scale: 1,
-			transition: {
-				type: 'spring',
-				stiffness: 120,
-				damping: 20,
-				duration: 0.8,
-			},
-		},
-	};
-
-	const subtitleVariants = {
-		hidden: {
-			opacity: 0,
-			y: 20,
-		},
-		visible: {
-			opacity: 1,
-			y: 0,
-			transition: {
-				delay: 0.2,
-				duration: 0.6,
-				ease: [0.25, 0.46, 0.45, 0.94],
-			},
-		},
-	};
-
-	const containerVariants = {
-		hidden: { opacity: 0 },
-		visible: {
-			opacity: 1,
-			transition: {
-				staggerChildren: 0.2,
-				delayChildren: 0.4,
-			},
-		},
-	};
-
 	const cardVariants = {
 		hidden: {
 			opacity: 0,
@@ -124,22 +76,6 @@ const PricingSection = () => {
 				duration: 0.8,
 			},
 		}),
-	};
-
-	const footerVariants = {
-		hidden: {
-			opacity: 0,
-			y: 20,
-		},
-		visible: {
-			opacity: 1,
-			y: 0,
-			transition: {
-				delay: 0.8,
-				duration: 0.6,
-				ease: [0.25, 0.46, 0.45, 0.94],
-			},
-		},
 	};
 
 	return (

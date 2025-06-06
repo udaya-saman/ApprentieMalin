@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Section from '../components/ui/Section';
 import SectionTitle from '../components/ui/SectionTitle';
-import Card from '../components/ui/Card';
 import config from '../config';
 
 // Define a set of beautiful, subtle gradients
@@ -25,7 +24,7 @@ const FAQSection = () => {
 	// State to track which FAQ item is open
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
 	// State to track current gradient assignments
-	const [currentGradients, setCurrentGradients] = useState<string[]>([]);
+	const [, setCurrentGradients] = useState<string[]>([]);
 
 	// Function to shuffle array randomly
 	const shuffleArray = (array: string[]) => {
@@ -54,20 +53,24 @@ const FAQSection = () => {
 		const handleSectionChange = () => {
 			// Get all sections except FAQ
 			const sections = document.querySelectorAll('section:not([id="faq"])');
-			
+
 			const observer = new IntersectionObserver(
 				(entries) => {
 					entries.forEach((entry) => {
 						// If any other section is visible and we have an open FAQ, close it
-						if (entry.isIntersecting && entry.intersectionRatio > 0.5 && openIndex !== null) {
+						if (
+							entry.isIntersecting &&
+							entry.intersectionRatio > 0.5 &&
+							openIndex !== null
+						) {
 							setOpenIndex(null);
 						}
 					});
 				},
 				{
 					threshold: 0.5,
-					rootMargin: '-10% 0px -10% 0px'
-				}
+					rootMargin: '-10% 0px -10% 0px',
+				},
 			);
 
 			sections.forEach((section) => observer.observe(section));
@@ -187,7 +190,7 @@ const FAQSection = () => {
 				transition={{ delay: 0.3 }}
 				className='mt-16 text-center'>
 				<p className='text-white/90 mb-4 text-lg'>
-					Still have questions? We're here to help!
+					Still have questions? We&apos;re here to help!
 				</p>
 				<motion.a
 					href={`mailto:${config.contact.email}`}

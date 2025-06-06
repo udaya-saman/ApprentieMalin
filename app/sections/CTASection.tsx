@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Section from '../components/ui/Section';
-import Button from '../components/ui/Button';
 
 const CTASection = () => {
 	// Animation variants
@@ -89,7 +88,8 @@ const CTASection = () => {
 						</h2>
 						<p className='text-xl text-white/90 mb-8 max-w-2xl mx-auto'>
 							Join thousands of students who are already experiencing smarter,
-							more engaging learning with ApprentieMalin's AI tutor on WhatsApp.
+							more engaging learning with ApprentieMalin&apos;s AI tutor on
+							WhatsApp.
 						</p>
 						<motion.div
 							variants={itemVariants}
@@ -99,7 +99,10 @@ const CTASection = () => {
 								target='_blank'
 								rel='noopener noreferrer'
 								className='bg-white text-[#1e1f23] hover:bg-blue-50 font-medium text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 no-underline'
-								style={{ backgroundColor: 'white !important', color: '#1e1f23 !important' }}>
+								style={{
+									backgroundColor: 'white !important',
+									color: '#1e1f23 !important',
+								}}>
 								<Image
 									src='/whatsapp.svg'
 									alt='WhatsApp icon'

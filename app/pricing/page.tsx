@@ -17,8 +17,8 @@ export default function PricingPage() {
 							Our Subscriptions
 						</h1>
 						<p className='text-lg md:text-xl mb-4'>
-							Choose the learning method that suits your child's needs. All our
-							plans include a xx-day free trial, so you can experience the
+							Choose the learning method that suits your child&apos;s needs. All
+							our plans include a xx-day free trial, so you can experience the
 							benefits of ApprentieMalin before making a commitment.
 						</p>
 					</div>

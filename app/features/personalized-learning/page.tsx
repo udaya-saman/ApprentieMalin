@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { useState } from 'react';
-import Image from 'next/image';
 
 const PersonalizedLearning = () => {
 	const [activeCard, setActiveCard] = useState(0);
@@ -95,7 +94,7 @@ const PersonalizedLearning = () => {
 						<motion.p
 							className='text-xl text-blue-800/70 mb-8'
 							variants={fadeInUp}>
-							Education tailored specifically to your child's unique needs,
+							Education tailored specifically to your child&apos;s unique needs,
 							learning style, and pace.
 						</motion.p>
 
@@ -131,19 +130,19 @@ const PersonalizedLearning = () => {
 									icon: '🧠',
 									title: 'Adaptive Assessment',
 									description:
-										"Our AI continuously evaluates your child's performance, identifying strengths and areas for improvement in real-time.",
+										'Our AI continuously evaluates your child&apos;s performance, identifying strengths and areas for improvement in real-time.',
 								},
 								{
 									icon: '🎯',
 									title: 'Custom Curriculum',
 									description:
-										"We develop individualized learning paths that adapt to your child's progress, focusing on areas that need attention.",
+										'We develop individualized learning paths that adapt to your child&apos;s progress, focusing on areas that need attention.',
 								},
 								{
 									icon: '📈',
 									title: 'Progress Tracking',
 									description:
-										"Detailed analytics show your child's improvement over time, highlighting breakthroughs and identifying new opportunities.",
+										'Detailed analytics show your child&apos;s improvement over time, highlighting breakthroughs and identifying new opportunities.',
 								},
 							].map((feature, index) => (
 								<motion.div

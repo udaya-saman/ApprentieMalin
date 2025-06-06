@@ -20,7 +20,7 @@ export const useScrollAnimation = ({
 
 	const isInView = useInView(ref, {
 		once,
-		margin: marginValue as any,
+		margin: marginValue,
 	});
 
 	return {

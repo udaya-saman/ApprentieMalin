@@ -94,7 +94,7 @@ const Header = () => {
 
 			// Force TypeScript to understand the type using explicit assertion
 			const validSection = mostVisibleSection as VisibleSection | null;
-			
+
 			if (validSection === null) return;
 			if ((validSection as VisibleSection).ratio <= 0.2) return;
 			if (activeSection === (validSection as VisibleSection).id) return;
@@ -130,7 +130,8 @@ const Header = () => {
 		return () => {
 			clearTimeout(timeoutId);
 			const currentObserverInstance = observerRef.current;
-			Object.values(sectionRefs.current).forEach((element) => {
+			const currentSectionRefsValue = sectionRefs.current;
+			Object.values(currentSectionRefsValue).forEach((element) => {
 				if (element && currentObserverInstance) {
 					currentObserverInstance.unobserve(element);
 				}
@@ -261,7 +262,8 @@ const Header = () => {
 					: 'bg-transparent py-6'
 			}`}
 			style={{
-				transitionProperty: 'background-color, backdrop-filter, box-shadow, padding',
+				transitionProperty:
+					'background-color, backdrop-filter, box-shadow, padding',
 			}}>
 			<div className='container mx-auto px-4 max-w-7xl'>
 				<div className='flex items-center justify-between'>

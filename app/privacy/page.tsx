@@ -10,12 +10,11 @@ export default function PrivacyPage() {
 		<main className='min-h-screen bg-white text-gray-900 pt-[100px]'>
 			<AnimatedSection className='container mx-auto px-4 py-6'>
 				<div className='max-w-4xl mx-auto'>
-					<motion.h1 
+					<motion.h1
 						className='text-3xl md:text-4xl font-bold text-blue-600 mb-8'
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.2 }}
-					>
+						transition={{ duration: 0.6, delay: 0.2 }}>
 						Privacy Policy
 					</motion.h1>
 
@@ -24,22 +23,22 @@ export default function PrivacyPage() {
 							<motion.div
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
-								transition={{ duration: 0.6, delay: 0.4 }}
-							>
+								transition={{ duration: 0.6, delay: 0.4 }}>
 								<p>Last updated: January 1, 2023</p>
 
 								<h2>1. Introduction</h2>
 								<p>
-									ApprentieMalin ("we," "our," or "us") is committed to protecting
-									your privacy. This Privacy Policy explains how we collect, use,
-									disclose, and safeguard your information when you use our
-									website, mobile application, and services (collectively, the
-									"Service").
+									ApprentieMalin (&quot;we,&quot; &quot;our,&quot; or
+									&quot;us&quot;) is committed to protecting your privacy. This
+									Privacy Policy explains how we collect, use, disclose, and
+									safeguard your information when you use our website, mobile
+									application, and services (collectively, the
+									&quot;Service&quot;).
 								</p>
 								<p>
 									Please read this Privacy Policy carefully. If you do not agree
-									with the terms of this Privacy Policy, please do not access the
-									Service.
+									with the terms of this Privacy Policy, please do not access
+									the Service.
 								</p>
 							</motion.div>
 						</AnimatedCard>
@@ -48,8 +47,7 @@ export default function PrivacyPage() {
 							<motion.div
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
-								transition={{ duration: 0.6, delay: 0.5 }}
-							>
+								transition={{ duration: 0.6, delay: 0.5 }}>
 								<h2>2. Information We Collect</h2>
 								<p>We may collect information about you in various ways:</p>
 
@@ -62,7 +60,7 @@ export default function PrivacyPage() {
 									<li>Name</li>
 									<li>Email address</li>
 									<li>Phone number</li>
-									<li>Child's first name and grade level</li>
+									<li>Child&apos;s first name and grade level</li>
 									<li>Payment information</li>
 								</ul>
 
@@ -74,7 +72,8 @@ export default function PrivacyPage() {
 								<ul>
 									<li>Interactions with our AI tools</li>
 									<li>
-										Content of your questions and conversations with our callbots
+										Content of your questions and conversations with our
+										callbots
 									</li>
 									<li>
 										Log data (such as IP address, browser type, pages visited)
@@ -91,8 +90,7 @@ export default function PrivacyPage() {
 							<motion.div
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
-								transition={{ duration: 0.6, delay: 0.6 }}
-							>
+								transition={{ duration: 0.6, delay: 0.6 }}>
 								<h2>3. How We Use Your Information</h2>
 								<p>
 									We may use the information we collect for various purposes,
@@ -119,10 +117,11 @@ export default function PrivacyPage() {
 							<motion.div
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
-								transition={{ duration: 0.6, delay: 0.7 }}
-							>
+								transition={{ duration: 0.6, delay: 0.7 }}>
 								<h2>4. Sharing Your Information</h2>
-								<p>We may share your information in the following situations:</p>
+								<p>
+									We may share your information in the following situations:
+								</p>
 								<ul>
 									<li>
 										With service providers who perform services on our behalf
@@ -142,15 +141,14 @@ export default function PrivacyPage() {
 							<motion.div
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
-								transition={{ duration: 0.6, delay: 0.8 }}
-							>
+								transition={{ duration: 0.6, delay: 0.8 }}>
 								<h2>5. Data Security</h2>
 								<p>
-									We use administrative, technical, and physical security measures
-									to help protect your personal information from unauthorized
-									access and disclosure. However, no system is completely secure,
-									and we cannot guarantee the absolute security of your
-									information.
+									We use administrative, technical, and physical security
+									measures to help protect your personal information from
+									unauthorized access and disclosure. However, no system is
+									completely secure, and we cannot guarantee the absolute
+									security of your information.
 								</p>
 							</motion.div>
 						</AnimatedCard>
@@ -159,15 +157,15 @@ export default function PrivacyPage() {
 							<motion.div
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
-								transition={{ duration: 0.6, delay: 0.9 }}
-							>
-								<h2>6. Children's Privacy</h2>
+								transition={{ duration: 0.6, delay: 0.9 }}>
+								<h2>6. Children&apos;s Privacy</h2>
 								<p>
 									Our Service is intended for use by children under parental
 									supervision. We collect limited information about children, as
-									described in this Privacy Policy, and we comply with applicable
-									laws regarding the protection of children's privacy, including
-									the Children's Online Privacy Protection Act (COPPA).
+									described in this Privacy Policy, and we comply with
+									applicable laws regarding the protection of children&apos;s
+									privacy, including the Children&apos;s Online Privacy
+									Protection Act (COPPA).
 								</p>
 								<p>
 									Parents or guardians have the right to review, delete, and
@@ -182,15 +180,16 @@ export default function PrivacyPage() {
 							<motion.div
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
-								transition={{ duration: 0.6, delay: 1 }}
-							>
+								transition={{ duration: 0.6, delay: 1 }}>
 								<h2>7. Your Rights</h2>
 								<p>
 									Depending on your location, you may have certain rights
 									regarding your personal information, such as the right to:
 								</p>
 								<ul>
-									<li>Access and receive a copy of your personal information</li>
+									<li>
+										Access and receive a copy of your personal information
+									</li>
 									<li>Rectify inaccurate or incomplete information</li>
 									<li>Request deletion of your personal information</li>
 									<li>Restrict or object to processing of your information</li>
@@ -207,14 +206,14 @@ export default function PrivacyPage() {
 							<motion.div
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
-								transition={{ duration: 0.6, delay: 1.1 }}
-							>
+								transition={{ duration: 0.6, delay: 1.1 }}>
 								<h2>8. Changes to This Privacy Policy</h2>
 								<p>
 									We may update this Privacy Policy from time to time. We will
 									notify you of any changes by posting the new Privacy Policy on
-									this page and updating the "Last updated" date. You are advised
-									to review this Privacy Policy periodically for any changes.
+									this page and updating the &quot;Last updated&quot; date. You
+									are advised to review this Privacy Policy periodically for any
+									changes.
 								</p>
 							</motion.div>
 						</AnimatedCard>
@@ -223,8 +222,7 @@ export default function PrivacyPage() {
 							<motion.div
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
-								transition={{ duration: 0.6, delay: 1.2 }}
-							>
+								transition={{ duration: 0.6, delay: 1.2 }}>
 								<h2>9. Contact Us</h2>
 								<p>
 									If you have any questions about this Privacy Policy, please

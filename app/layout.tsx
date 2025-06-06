@@ -17,7 +17,6 @@ export const metadata: Metadata = {
 };
 
 // Font optimization
-const fontSans = { subsets: ['latin'], display: 'swap' };
 
 export default function RootLayout({
 	children,

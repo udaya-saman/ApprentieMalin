@@ -1,148 +1,12 @@
 'use client';
 
-import { motion, AnimatePresence, useAnimationControls } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import Section from '../components/ui/Section';
 import SectionTitle from '../components/ui/SectionTitle';
 
-// Debounce helper function
-const debounce = (func: Function, wait: number) => {
-	let timeout: NodeJS.Timeout;
-	return function executedFunction(...args: any[]) {
-		const later = () => {
-			clearTimeout(timeout);
-			func(...args);
-		};
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-	};
-};
-
-// MagicalMascot component
-const MagicalMascot = ({
-	isVisible,
-	x,
-	y,
-}: {
-	isVisible: boolean;
-	x: number;
-	y: number;
-}) => {
-	const controls = useAnimationControls();
-	const [showExplosion, setShowExplosion] = useState(false);
-
-	useEffect(() => {
-		if (isVisible) {
-			setShowExplosion(false);
-			controls
-				.start({
-					opacity: [0, 1, 1, 1, 0],
-					scale: [0.3, 1.2, 1, 1, 1.2],
-					rotate: [0, -5, 5, -5, 5],
-					transition: {
-						duration: 1.3,
-						times: [0, 0.3, 0.4, 0.75, 1],
-					},
-				})
-				.then(() => {
-					setShowExplosion(true);
-				});
-		}
-	}, [isVisible, controls]);
-
-	return (
-		<>
-			<motion.div
-				className='fixed pointer-events-none z-50'
-				animate={controls}
-				initial={{ opacity: 0, scale: 0.3 }}
-				style={{
-					left: x - 42.5,
-					top: y - 42.5,
-					width: '85px',
-					height: '85px',
-				}}>
-				<Image
-					src='/images/hero-mascot.png'
-					alt='Magical Mascot'
-					width={85}
-					height={85}
-					className='w-full h-full object-contain'
-				/>
-			</motion.div>
-
-			{/* Magical explosion effect */}
-			{showExplosion && (
-				<motion.div
-					className='fixed pointer-events-none z-50'
-					initial={{ scale: 0.2, opacity: 0 }}
-					animate={{ scale: [0.2, 2, 3], opacity: [0, 1, 0] }}
-					transition={{ duration: 1.2 }}
-					style={{
-						left: x - 42.5,
-						top: y - 42.5,
-						width: '85px',
-						height: '85px',
-					}}>
-					<div className='absolute inset-0 bg-[#0078f0]/20 rounded-full blur-lg' />
-
-					{/* Magical sparkles */}
-					{Array.from({ length: 12 }).map((_, i) => {
-						const angle = (i / 12) * Math.PI * 2;
-						const distance = 120;
-						const randomDelay = Math.random() * 0.3;
-						const randomDuration = 0.8 + Math.random() * 0.4;
-						const randomSize = 4 + Math.random() * 4;
-						const colors = ['#0078f0', '#00f0f0', '#f000f0', '#f0f000'];
-						const randomColor =
-							colors[Math.floor(Math.random() * colors.length)];
-
-						return (
-							<motion.div
-								key={i}
-								className='absolute rounded-full'
-								style={{
-									left: '50%',
-									top: '50%',
-									width: randomSize,
-									height: randomSize,
-									backgroundColor: randomColor,
-								}}
-								initial={{ x: 0, y: 0, opacity: 1 }}
-								animate={{
-									x: Math.cos(angle) * distance,
-									y: Math.sin(angle) * distance,
-									opacity: 0,
-									scale: [1, 0.5, 0],
-								}}
-								transition={{
-									duration: randomDuration,
-									delay: randomDelay,
-									ease: 'easeOut',
-								}}
-							/>
-						);
-					})}
-				</motion.div>
-			)}
-		</>
-	);
-};
-
 const HowItWorksSection = () => {
-	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-	// Update mouse position on move
-	useEffect(() => {
-		const handleMouseMove = (e: MouseEvent) => {
-			setMousePosition({ x: e.clientX, y: e.clientY });
-		};
-
-		window.addEventListener('mousemove', handleMouseMove);
-		return () => window.removeEventListener('mousemove', handleMouseMove);
-	}, []);
-
 	// Enhanced animation variants
 	const containerVariants = {
 		hidden: { opacity: 0 },
@@ -235,16 +99,6 @@ const HowItWorksSection = () => {
 		}
 	};
 
-	// Enhanced hover animation
-	const cardHoverAnimation = {
-		scale: 1.05,
-		transition: {
-			type: 'spring',
-			stiffness: 400,
-			damping: 25,
-		},
-	};
-
 	return (
 		<Section
 			id='how-it-works'
@@ -322,7 +176,7 @@ const HowItWorksSection = () => {
 
 						{/* Feature Cards with Enhanced Interactivity */}
 						<AnimatePresence>
-							{features.map((feature, index) => (
+							{features.map((feature) => (
 								<motion.div
 									key={feature.id}
 									variants={itemVariants}

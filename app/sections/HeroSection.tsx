@@ -3,8 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
-import { AnimationSequence } from '../types';
 import Button from '../components/ui/Button';
 import Section from '../components/ui/Section';
 
@@ -14,7 +12,6 @@ const HeroSection = () => {
 	const [lastHoverEffect, setLastHoverEffect] = useState(-1);
 	const [currentHoverEffect, setCurrentHoverEffect] = useState(0);
 	const imageControls = useAnimation();
-	const imageRef = useRef<HTMLDivElement>(null);
 
 	// Constant subtle floating animation that runs all the time
 	const constantAnimation = {
@@ -175,7 +172,7 @@ const HeroSection = () => {
 		}, 15000);
 
 		return () => clearInterval(interval);
-	}, []);
+	}, [getRandomEffect]);
 
 	// Combine constant animation with current effect
 	const combinedAnimation = {

@@ -1,4 +1,3 @@
-import type { Route } from 'next';
 import { headers } from 'next/headers';
 
 // Use force-static in development for faster page loads

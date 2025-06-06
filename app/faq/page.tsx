@@ -27,7 +27,7 @@ export default function FAQPage() {
 						</h1>
 						<p className='text-lg md:text-xl mb-8'>
 							Find answers to common questions about ApprentieMalin. If you
-							can't find what you're looking for, feel free to{' '}
+							can&apos;t find what you&apos;re looking for, feel free to{' '}
 							<Link
 								href='/contact'
 								className='text-blue-600 hover:text-blue-800'>
@@ -247,11 +247,11 @@ export default function FAQPage() {
 										How do I reset my password?
 									</h3>
 									<p className='text-gray-700'>
-										If you've forgotten your password, you can reset it by
-										clicking on the "Forgot Password" link on the login page.
-										You will receive an email with instructions to create a new
-										password. If you don't receive the email, please check your
-										spam folder or contact our support team.
+										If you&apos;ve forgotten your password, you can reset it by
+										clicking on the &quot;Forgot Password&quot; link on the
+										login page. You will receive an email with instructions to
+										create a new password. If you don&apos;t receive the email,
+										please check your spam folder or contact our support team.
 									</p>
 								</div>
 							</AnimatedCard>
@@ -270,8 +270,8 @@ export default function FAQPage() {
 						Still Have Questions?
 					</h2>
 					<p className='text-xl mb-8 max-w-4xl mx-auto text-white'>
-						Our support team is here to help. We'll get back to you as quickly
-						as possible.
+						Our support team is here to help. We&apos;ll get back to you as
+						quickly as possible.
 					</p>
 					<div>
 						<Link

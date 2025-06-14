@@ -58,19 +58,16 @@ export default function FeaturesPage() {
 									</h2>
 								</div>
 								<p className='text-lg text-gray-600 mb-10 leading-relaxed'>
-									Access our specialized AI directly on your ApprentieMalin
-									space. Ask all your homework questions in writing, send photos
-									of your exercises, and receive personalized help to understand
-									and progress.
+									Access our specialized AI directly on your ApprentieMalin space.
+									Ask all your homework questions in writing, send photos of your
+									exercises, and receive personalized help to understand and
+									progress.
 								</p>
 								<div className='space-y-4 mb-10'>
 									<ul className='grid gap-6'>
 										<li className='flex items-start gap-4'>
 											<div className='w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mt-1 flex-shrink-0'>
-												<svg
-													className='w-4 h-4'
-													fill='white'
-													viewBox='0 0 20 20'>
+												<svg className='w-4 h-4' fill='white' viewBox='0 0 20 20'>
 													<path
 														fillRule='evenodd'
 														d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
@@ -84,10 +81,7 @@ export default function FeaturesPage() {
 										</li>
 										<li className='flex items-start gap-4'>
 											<div className='w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mt-1 flex-shrink-0'>
-												<svg
-													className='w-4 h-4'
-													fill='white'
-													viewBox='0 0 20 20'>
+												<svg className='w-4 h-4' fill='white' viewBox='0 0 20 20'>
 													<path
 														fillRule='evenodd'
 														d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
@@ -96,16 +90,13 @@ export default function FeaturesPage() {
 												</svg>
 											</div>
 											<span className='text-gray-800 leading-relaxed font-medium'>
-												Photo support: Send photos of your exercises for
-												detailed explanations
+												Photo support: Send photos of your exercises for detailed
+												explanations
 											</span>
 										</li>
 										<li className='flex items-start gap-4'>
 											<div className='w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mt-1 flex-shrink-0'>
-												<svg
-													className='w-4 h-4'
-													fill='white'
-													viewBox='0 0 20 20'>
+												<svg className='w-4 h-4' fill='white' viewBox='0 0 20 20'>
 													<path
 														fillRule='evenodd'
 														d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
@@ -121,10 +112,7 @@ export default function FeaturesPage() {
 										</li>
 										<li className='flex items-start gap-4'>
 											<div className='w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mt-1 flex-shrink-0'>
-												<svg
-													className='w-4 h-4'
-													fill='white'
-													viewBox='0 0 20 20'>
+												<svg className='w-4 h-4' fill='white' viewBox='0 0 20 20'>
 													<path
 														fillRule='evenodd'
 														d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
@@ -264,9 +252,9 @@ export default function FeaturesPage() {
 												</svg>
 											</div>
 											<span className='text-gray-800 leading-relaxed font-medium'>
-												Adapts its explanations: If you don&apos;t understand a
-												first explanation, the Callbot can rephrase it
-												differently orally
+												Adapts its explanations: If you don't understand a first
+												explanation, the Callbot can rephrase it differently
+												orally
 											</span>
 										</li>
 										<li className='flex items-start gap-4'>
@@ -655,7 +643,7 @@ export default function FeaturesPage() {
 							viewport={{ once: true }}
 							transition={{ duration: 0.6, delay: 0.2 }}>
 							Combine AI Chat and specialized Callbots for a personalized
-							learning experience that adapts to each student&apos;s needs and
+							learning experience that adapts to each student's needs and
 							preferences.
 						</motion.p>
 						<motion.div

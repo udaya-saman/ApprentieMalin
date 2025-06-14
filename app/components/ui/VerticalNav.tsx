@@ -1,5 +1,5 @@
 'use client';
-// TypeScript fixes applied for Vercel deployment
+
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -245,7 +245,7 @@ const VerticalNav = () => {
 
 		const handleScroll = () => {
 			let maxVisibility = 0;
-			let mostVisibleSection: HTMLElement | null = null;
+			let mostVisibleSection = null;
 
 			navItems.forEach(({ id }) => {
 				const section = document.getElementById(id);
@@ -260,17 +260,13 @@ const VerticalNav = () => {
 				}
 			});
 
-			if (!mostVisibleSection || maxVisibility <= 0.3) return;
-
-			// At this point, mostVisibleSection is guaranteed to be a non-null HTMLElement
-			const sectionId = (mostVisibleSection as HTMLElement).id;
-			setActiveSection(sectionId);
-
-			// Only check background in normal mode, not in dark mode
-			if (!isDarkMode) {
-				setIsWhiteBackground(
-					checkBackground(mostVisibleSection as HTMLElement),
-				);
+			if (mostVisibleSection && maxVisibility > 0.3) {
+				// At least 30% visible
+				setActiveSection(mostVisibleSection.id);
+				// Only check background in normal mode, not in dark mode
+				if (!isDarkMode) {
+					setIsWhiteBackground(checkBackground(mostVisibleSection));
+				}
 			}
 		};
 

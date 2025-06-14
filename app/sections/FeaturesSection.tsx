@@ -1,12 +1,26 @@
 'use client';
 
 import { motion, useAnimationControls } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import Section from '../components/ui/Section';
 import SectionTitle from '../components/ui/SectionTitle';
 import Card from '../components/ui/Card';
 import config from '../config';
+import { FeatureType } from '../types';
+
+// Debounce helper function
+const debounce = (func: Function, wait: number) => {
+	let timeout: NodeJS.Timeout;
+	return function executedFunction(...args: any[]) {
+		const later = () => {
+			clearTimeout(timeout);
+			func(...args);
+		};
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+	};
+};
 
 // MagicalMascot component
 const MagicalMascot = ({
@@ -159,6 +173,65 @@ const FeaturesSection = () => {
 		},
 	};
 
+	const floatingAnimation = {
+		y: [-8, 8],
+		rotate: [-2, 2],
+		transition: {
+			duration: 3,
+			repeat: Infinity,
+			repeatType: 'reverse' as const,
+			ease: 'easeInOut',
+		},
+	};
+
+	const magicalGlowAnimation = {
+		boxShadow: [
+			'0 0 15px rgba(0, 120, 240, 0.3), 0 0 30px rgba(255, 255, 255, 0.2)',
+			'0 0 30px rgba(0, 120, 240, 0.5), 0 0 60px rgba(255, 255, 255, 0.3)',
+			'0 0 15px rgba(0, 120, 240, 0.3), 0 0 30px rgba(255, 255, 255, 0.2)',
+		],
+		scale: [1, 1.02, 1],
+		transition: {
+			duration: 2.5,
+			repeat: Infinity,
+			repeatType: 'reverse' as const,
+			ease: 'easeInOut',
+		},
+	};
+
+	const sparkleAnimation = {
+		scale: [1, 1.2, 1],
+		opacity: [0.5, 1, 0.5],
+		rotate: [0, 180, 360],
+		transition: {
+			duration: 2,
+			repeat: Infinity,
+			repeatType: 'reverse' as const,
+		},
+	};
+
+	const shimmerAnimation = {
+		backgroundPosition: ['200% 0', '-200% 0'],
+		transition: {
+			duration: 8,
+			repeat: Infinity,
+			ease: 'linear',
+		},
+	};
+
+	const generateSparkles = (count: number) => {
+		return Array.from({ length: count }).map((_, i) => ({
+			id: i,
+			size: Math.random() * 4 + 2,
+			delay: Math.random() * 2,
+			duration: Math.random() * 2 + 1,
+			initialPosition: {
+				x: Math.random() * 100 - 50,
+				y: Math.random() * 100 - 50,
+			},
+		}));
+	};
+
 	return (
 		<Section
 			id='features'
@@ -204,6 +277,12 @@ const FeaturesSection = () => {
 				viewport={{ once: true }}
 				className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-16 relative z-10 max-w-5xl mx-auto'>
 				{config.features.main.map((feature, index) => {
+					const cardBgColors = [
+						'bg-[#fdf2f8]',
+						'bg-[#fefbe8]',
+						'bg-[#e4f2fd]',
+						'bg-[#f0fdf4]',
+					];
 					const iconBgColors = [
 						'bg-white/20 backdrop-blur-sm border border-white/30',
 						'bg-blue-50/30 backdrop-blur-sm border border-blue-100/40',

@@ -10,11 +10,11 @@ const nextConfig = {
 	compiler: {
 		removeConsole: process.env.NODE_ENV === 'production',
 	},
-	// Disable experimental features that cause build issues
+	// Disable experimental features in development
 	experimental:
 		process.env.NODE_ENV === 'production'
 			? {
-					// optimizeCss: true, // Disabled - causes critters module error
+					optimizeCss: true,
 					optimizePackageImports: ['framer-motion', 'swiper'],
 			  }
 			: {},

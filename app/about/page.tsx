@@ -42,11 +42,11 @@ export default function AboutPage() {
 								location or socioeconomic background.
 							</p>
 							<p className='text-lg mb-6'>
-								We&apos;re committed to leveraging the latest advancements in
+								We're committed to leveraging the latest advancements in
 								artificial intelligence to create tools that genuinely
-								understand students&apos; needs, challenges, and emotions -
-								providing support that goes beyond just giving answers to truly
-								fostering understanding and autonomy.
+								understand students' needs, challenges, and emotions - providing
+								support that goes beyond just giving answers to truly fostering
+								understanding and autonomy.
 							</p>
 						</AnimatedCard>
 						<AnimatedCard
@@ -85,11 +85,11 @@ export default function AboutPage() {
 							<p className='text-lg mb-6'>
 								Our founders experienced firsthand the challenges of helping
 								their own children with homework - the time constraints, the
-								frustration when a concept wasn&apos;t understood, and the
-								desire to foster independence while providing support. This
-								sparked the idea: what if AI could be trained specifically to
-								provide the kind of patient, personalized, step-by-step guidance
-								that students need?
+								frustration when a concept wasn't understood, and the desire to
+								foster independence while providing support. This sparked the
+								idea: what if AI could be trained specifically to provide the
+								kind of patient, personalized, step-by-step guidance that
+								students need?
 							</p>
 							<p className='text-lg'>
 								After two years of research, development, and testing with
@@ -175,9 +175,9 @@ export default function AboutPage() {
 									Accessibility For All
 								</h3>
 								<p className='text-center'>
-									Education should not be a privilege. We&apos;re committed to
-									making quality educational support available to students from
-									all backgrounds and learning styles.
+									Education should not be a privilege. We're committed to making
+									quality educational support available to students from all
+									backgrounds and learning styles.
 								</p>
 							</div>
 						</AnimatedCard>
@@ -335,9 +335,9 @@ export default function AboutPage() {
 						Join Us in Transforming Education
 					</h2>
 					<p className='text-xl mb-8 max-w-3xl mx-auto text-white'>
-						We&apos;re on a mission to make quality education accessible to all.
-						With ApprentieMalin, we&apos;re not just helping with homework -
-						we&apos;re building the foundation for lifelong learning.
+						We're on a mission to make quality education accessible to all. With
+						ApprentieMalin, we're not just helping with homework - we're
+						building the foundation for lifelong learning.
 					</p>
 				</div>
 			</AnimatedSection>

@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import AnimatedSection from '../components/ui/AnimatedSection';
+import AnimatedSection, {
+	AnimatedCard,
+} from '../components/ui/AnimatedSection';
 
 export default function CreateAccountPage() {
 	return (
@@ -114,7 +116,7 @@ export default function CreateAccountPage() {
 									<label
 										htmlFor='childFirstName'
 										className='block text-sm font-medium text-gray-700 mb-1'>
-										Your child&apos;s first name
+										Your child's first name
 									</label>
 									<p className='text-sm text-gray-500 mb-2'>
 										This first name may be used by the AI to personalize the
@@ -133,10 +135,10 @@ export default function CreateAccountPage() {
 									<label
 										htmlFor='grade'
 										className='block text-sm font-medium text-gray-700 mb-1'>
-										Your child&apos;s grade
+										Your child's grade
 									</label>
 									<p className='text-sm text-gray-500 mb-2'>
-										This allows us to adapt the help to your child&apos;s school
+										This allows us to adapt the help to your child's school
 										curriculum.
 									</p>
 									<select

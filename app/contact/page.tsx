@@ -17,8 +17,8 @@ export default function ContactPage() {
 							Contact Us
 						</h1>
 						<p className='text-lg md:text-xl mb-8'>
-							Have questions about ApprentieMalin? We&apos;re here to help.
-							Reach out to our team through any of the channels below.
+							Have questions about ApprentieMalin? We're here to help. Reach out
+							to our team through any of the channels below.
 						</p>
 					</div>
 				</div>

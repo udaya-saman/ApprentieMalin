@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import config from '../config';
+import { FooterLink } from '../types';
 
 const Footer = () => {
 	// Animation variants
@@ -24,7 +25,7 @@ const Footer = () => {
 	};
 
 	const currentYear = new Date().getFullYear();
-
+	
 	// Social media icon mapping
 	const socialIcons = {
 		twitter: '/images/icon/sm_icon1.png',
@@ -32,12 +33,12 @@ const Footer = () => {
 		instagram: '/images/icon/sm_icon3.png',
 		linkedin: '/images/icon/sm_icon4.png',
 	};
-
+	
 	// Prepare footer sections from config
 	const footerSections = [
 		{
 			title: 'Product',
-			links: config.nav.main.filter((link) => link.name !== 'Home'),
+			links: config.nav.main.filter(link => link.name !== 'Home'),
 		},
 		{
 			title: 'Resources',
@@ -67,7 +68,10 @@ const Footer = () => {
 					viewport={{ once: true }}
 					className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8'>
 					{/* Logo and description */}
-					<motion.div variants={itemVariants} className='lg:col-span-2'>
+					<motion.div 
+						variants={itemVariants} 
+						className='lg:col-span-2'
+					>
 						<Link href='#' className='inline-block'>
 							<h2 className='text-2xl font-bold text-white mb-4'>
 								{config.site.name}
@@ -129,7 +133,7 @@ const Footer = () => {
 						© {currentYear} {config.site.name}. All rights reserved.
 					</p>
 					<div className='flex flex-wrap justify-center md:justify-end space-x-4'>
-						{config.nav.legal.map((link) => (
+						{config.nav.legal.map(link => (
 							<Link
 								key={link.name}
 								href={link.href}

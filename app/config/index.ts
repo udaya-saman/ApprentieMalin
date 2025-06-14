@@ -55,8 +55,7 @@ export const features = {
 			details: {
 				howItWorks: 'Send questions or photos of exercises',
 				benefits: 'Step-by-step guidance, adapts to emotions, available 24/7',
-				bestFor:
-					'Students who prefer reading explanations and working at their own pace',
+				bestFor: 'Students who prefer reading explanations and working at their own pace'
 			},
 			icon: '💬',
 		},
@@ -66,31 +65,27 @@ export const features = {
 			details: {
 				howItWorks: 'Call directly from your ApprentieMalin space',
 				benefits: 'Dynamic verbal guidance, perfect for auditory learners',
-				bestFor:
-					'Students who learn better through conversation and explanation',
+				bestFor: 'Students who learn better through conversation and explanation'
 			},
 			icon: '📞',
 		},
 		{
 			title: 'Language Learning Callbot',
-			description:
-				'What it does: Interactive oral practice for foreign languages',
+			description: 'What it does: Interactive oral practice for foreign languages',
 			details: {
 				howItWorks: 'Engage in conversations on various topics',
-				benefits:
-					'Builds confidence, improves pronunciation, provides instant feedback',
-				bestFor: 'Developing real-world language skills through practice',
+				benefits: 'Builds confidence, improves pronunciation, provides instant feedback',
+				bestFor: 'Developing real-world language skills through practice'
 			},
 			icon: '🗣️',
 		},
 		{
 			title: '"Smart Review" Feature',
-			description:
-				'What it does: Provides quick and targeted revisions before tests',
+			description: 'What it does: Provides quick and targeted revisions before tests',
 			details: {
 				howItWorks: 'Ask for a review on any topic in your curriculum',
 				benefits: 'Consolidates knowledge, perfect for last-minute studying',
-				bestFor: 'Test preparation and knowledge reinforcement',
+				bestFor: 'Test preparation and knowledge reinforcement'
 			},
 			icon: '🎯',
 		},
@@ -172,14 +167,14 @@ export const faqItems = [
 			'We offer a free starter plan that gives you access to basic features. Premium plans with unlimited questions, advanced explanations, and progress tracking are available at affordable monthly rates. Visit our pricing page for current offers.',
 	},
 	{
-		question: 'Can parents monitor their child&apos;s learning progress?',
+		question: "Can parents monitor their child's learning progress?",
 		answer:
-			'Yes! Our parent dashboard allows you to track your child&apos;s learning activity, view subjects they&apos;re studying, monitor progress, and see areas where they might need additional support. It&apos;s a great way to stay involved in your child&apos;s education.',
+			"Yes! Our parent dashboard allows you to track your child's learning activity, view subjects they're studying, monitor progress, and see areas where they might need additional support. It's a great way to stay involved in your child's education.",
 	},
 	{
 		question: 'Is ApprentieMalin available in multiple languages?',
 		answer:
-			'Currently, ApprentieMalin is available in English and French. We&apos;re actively working on adding more languages to support students worldwide. Stay tuned for updates on additional language support.',
+			"Currently, ApprentieMalin is available in English and French. We're actively working on adding more languages to support students worldwide. Stay tuned for updates on additional language support.",
 	},
 	{
 		question: 'How quickly will my child receive responses?',
@@ -189,10 +184,10 @@ export const faqItems = [
 	{
 		question: 'Can ApprentieMalin help with exam preparation?',
 		answer:
-			'Absolutely! ApprentieMalin is excellent for exam prep. Students can ask specific questions about topics they&apos;re studying, request practice problems, and get step-by-step explanations that help reinforce their understanding before tests and exams.',
+			"Absolutely! ApprentieMalin is excellent for exam prep. Students can ask specific questions about topics they're studying, request practice problems, and get step-by-step explanations that help reinforce their understanding before tests and exams.",
 	},
 	{
-		question: 'What if the AI doesn&apos;t understand my question?',
+		question: "What if the AI doesn't understand my question?",
 		answer:
 			'While our AI tutor is very advanced, occasionally it might need clarification. In these cases, it will politely ask for more information or suggest rephrasing your question. For complex issues, our human support team can assist when needed.',
 	},

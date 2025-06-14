@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Image from 'next/image';
 import AnimatedSection, {
 	AnimatedCard,
@@ -72,8 +73,8 @@ export default function ServicesPage() {
 										<span className='text-blue-500 mr-2'>✓</span>
 										<span>
 											Responds live to your homework questions: Mathematics,
-											French, History-Geography, Sciences... (for the
-											student&apos;s level)
+											French, History-Geography, Sciences... (for the student's
+											level)
 										</span>
 									</li>
 									<li className='flex items-start'>
@@ -87,9 +88,9 @@ export default function ServicesPage() {
 									<li className='flex items-start'>
 										<span className='text-blue-500 mr-2'>✓</span>
 										<span>
-											Guides step by step toward the solution: Don&apos;t wait
-											for the answer, the AI asks you questions and helps you
-											find the solution by yourself
+											Guides step by step toward the solution: Don't wait for
+											the answer, the AI asks you questions and helps you find
+											the solution by yourself
 										</span>
 									</li>
 									<li className='flex items-start'>
@@ -196,8 +197,8 @@ export default function ServicesPage() {
 									<li className='flex items-start'>
 										<span className='text-blue-500 mr-2'>✓</span>
 										<span>
-											Adapts its explanations: If you don&apos;t understand a
-											first explanation, the Callbot can rephrase it differently
+											Adapts its explanations: If you don't understand a first
+											explanation, the Callbot can rephrase it differently
 											orally
 										</span>
 									</li>

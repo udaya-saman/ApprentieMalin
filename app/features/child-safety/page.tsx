@@ -52,8 +52,8 @@ const ChildSafety = () => {
 						<motion.p
 							className='text-xl text-blue-800/70 mb-8'
 							variants={fadeInUp}>
-							A secure learning space designed with your child&apos;s safety as
-							our top priority.
+							A secure learning space designed with your child's safety as our
+							top priority.
 						</motion.p>
 
 						<motion.div variants={fadeInUp}>
@@ -127,7 +127,7 @@ const ChildSafety = () => {
 									</h3>
 									<p className='text-blue-800/70 mb-4'>
 										Our platform is built with multiple layers of security to
-										protect children&apos;s privacy and ensure they have a safe
+										protect children's privacy and ensure they have a safe
 										learning experience.
 									</p>
 									<ul className='space-y-2 text-blue-800/70'>
@@ -157,7 +157,7 @@ const ChildSafety = () => {
 										Safety First Design Philosophy
 									</h3>
 									<p className='text-white/90'>
-										We&apos;ve designed our entire platform with safety as a
+										We've designed our entire platform with safety as a
 										foundational principle, not an afterthought. Every feature,
 										interaction, and piece of content is evaluated through a
 										child safety lens before implementation.
@@ -232,7 +232,7 @@ const ChildSafety = () => {
 									icon: '🛑',
 									title: 'Topic Restrictions',
 									description:
-										'Strict restrictions on sensitive topics ensure conversations remain appropriate for the child&apos;s age and educational context.',
+										"Strict restrictions on sensitive topics ensure conversations remain appropriate for the child's age and educational context.",
 								},
 							].map((feature, index) => (
 								<motion.div
@@ -284,7 +284,7 @@ const ChildSafety = () => {
 								},
 								{
 									quote:
-										'My daughter loves using the platform for homework help, and I love that I don&apos;t have to worry about inappropriate content or privacy concerns.',
+										"My daughter loves using the platform for homework help, and I love that I don't have to worry about inappropriate content or privacy concerns.",
 									author: 'Michelle K., Mother',
 								},
 								{

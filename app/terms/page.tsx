@@ -28,13 +28,12 @@ export default function TermsPage() {
 
 								<h2>1. Introduction</h2>
 								<p>
-									Welcome to ApprentieMalin (&quot;we,&quot; &quot;our,&quot; or
-									&quot;us&quot;). These Terms of Service (&quot;Terms&quot;)
-									govern your access to and use of the ApprentieMalin website,
-									mobile application, and services (collectively, the
-									&quot;Service&quot;). By accessing or using the Service, you
-									agree to be bound by these Terms. If you do not agree to these
-									Terms, you may not access or use the Service.
+									Welcome to ApprentieMalin ("we," "our," or "us"). These Terms
+									of Service ("Terms") govern your access to and use of the
+									ApprentieMalin website, mobile application, and services
+									(collectively, the "Service"). By accessing or using the
+									Service, you agree to be bound by these Terms. If you do not
+									agree to these Terms, you may not access or use the Service.
 								</p>
 							</motion.div>
 						</AnimatedCard>
@@ -188,9 +187,9 @@ export default function TermsPage() {
 								<p>
 									We reserve the right, at our sole discretion, to modify or
 									replace these Terms at any time. If a revision is material, we
-									will try to provide at least 30 days&apos; notice prior to any
-									new terms taking effect. What constitutes a material change
-									will be determined at our sole discretion.
+									will try to provide at least 30 days' notice prior to any new
+									terms taking effect. What constitutes a material change will
+									be determined at our sole discretion.
 								</p>
 							</motion.div>
 						</AnimatedCard>

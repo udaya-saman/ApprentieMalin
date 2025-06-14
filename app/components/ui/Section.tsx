@@ -8,7 +8,6 @@ interface SectionProps {
 	variant?: 'blue' | 'white' | 'default';
 	withContainer?: boolean;
 	withAnimation?: boolean;
-	style?: React.CSSProperties;
 }
 
 const Section = ({
@@ -18,7 +17,6 @@ const Section = ({
 	variant = 'default',
 	withContainer = true,
 	withAnimation = true,
-	style,
 }: SectionProps) => {
 	// Define base section styles
 	const baseStyles = 'section relative';
@@ -61,12 +59,11 @@ const Section = ({
 			initial='hidden'
 			whileInView='visible'
 			viewport={{ once: true, amount: 0.2 }}
-			variants={containerVariants}
-			style={style}>
+			variants={containerVariants}>
 			{content}
 		</motion.section>
 	) : (
-		<section id={id} className={sectionStyles} style={style}>
+		<section id={id} className={sectionStyles}>
 			{content}
 		</section>
 	);

@@ -78,31 +78,25 @@ const Header = () => {
 
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
-					const currentSection: VisibleSection = {
-						id: entry.target.id,
-						ratio: entry.intersectionRatio,
-					};
-
 					if (
-						mostVisibleSection === null ||
-						currentSection.ratio > mostVisibleSection.ratio
+						!mostVisibleSection ||
+						entry.intersectionRatio > mostVisibleSection.ratio
 					) {
-						mostVisibleSection = currentSection;
+						mostVisibleSection = {
+							id: entry.target.id,
+							ratio: entry.intersectionRatio,
+						};
 					}
 				}
 			});
 
-			// Force TypeScript to understand the type using explicit assertion
-			const validSection = mostVisibleSection as VisibleSection | null;
-
-			if (validSection === null) return;
-			if ((validSection as VisibleSection).ratio <= 0.2) return;
-			if (activeSection === (validSection as VisibleSection).id) return;
-
-			// Use explicit type assertions for all accesses
-			const sectionId = (validSection as VisibleSection).id;
-			setActiveSection(sectionId);
-			lastObservedSection.current = sectionId;
+			// Only update state if a section is clearly visible and different from current
+			if (mostVisibleSection && mostVisibleSection.ratio > 0.2) {
+				if (activeSection !== mostVisibleSection.id) {
+					setActiveSection(mostVisibleSection.id);
+					lastObservedSection.current = mostVisibleSection.id;
+				}
+			}
 		};
 
 		const observerOptions: IntersectionObserverInit = {
@@ -130,8 +124,7 @@ const Header = () => {
 		return () => {
 			clearTimeout(timeoutId);
 			const currentObserverInstance = observerRef.current;
-			const currentSectionRefsValue = sectionRefs.current;
-			Object.values(currentSectionRefsValue).forEach((element) => {
+			Object.values(sectionRefs.current).forEach((element) => {
 				if (element && currentObserverInstance) {
 					currentObserverInstance.unobserve(element);
 				}
@@ -262,8 +255,7 @@ const Header = () => {
 					: 'bg-transparent py-6'
 			}`}
 			style={{
-				transitionProperty:
-					'background-color, backdrop-filter, box-shadow, padding',
+				transitionProperty: 'background-color, backdrop-filter, box-shadow, padding',
 			}}>
 			<div className='container mx-auto px-4 max-w-7xl'>
 				<div className='flex items-center justify-between'>

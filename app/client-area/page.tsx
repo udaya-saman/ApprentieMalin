@@ -4,6 +4,7 @@ import Link from 'next/link';
 import AnimatedSection, {
 	AnimatedCard,
 } from '../components/ui/AnimatedSection';
+import { Metadata } from 'next';
 import { motion } from 'framer-motion';
 
 export default function ClientAreaPage() {
@@ -29,7 +30,7 @@ export default function ClientAreaPage() {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, delay: 0.2 }}>
-							Hello, Here&apos;s what you can access with your subscription:
+							Hello, Here's what you can access with your subscription:
 						</motion.p>
 					</div>
 				</div>

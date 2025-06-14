@@ -8,6 +8,7 @@ interface SectionProps {
 	variant?: 'blue' | 'white' | 'default';
 	withContainer?: boolean;
 	withAnimation?: boolean;
+	style?: React.CSSProperties;
 }
 
 const Section = ({

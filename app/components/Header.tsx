@@ -73,8 +73,8 @@ const Header = () => {
 			'get-started',
 		].filter(Boolean);
 
-		const observerCallback = (entries: IntersectionObserverEntry[]) => {
-			let mostVisibleSection: { id: string; ratio: number } | null = null;
+		const observerCallback: IntersectionObserverCallback = (entries) => {
+			let mostVisibleSection: VisibleSection | null = null;
 
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
@@ -91,10 +91,15 @@ const Header = () => {
 			});
 
 			// Only update state if a section is clearly visible and different from current
-			if (mostVisibleSection && mostVisibleSection.ratio > 0.2) {
-				if (activeSection !== mostVisibleSection.id) {
-					setActiveSection(mostVisibleSection.id);
-					lastObservedSection.current = mostVisibleSection.id;
+			if (
+				mostVisibleSection &&
+				(mostVisibleSection as VisibleSection).ratio > 0.2
+			) {
+				if (activeSection !== (mostVisibleSection as VisibleSection).id) {
+					setActiveSection((mostVisibleSection as VisibleSection).id);
+					lastObservedSection.current = (
+						mostVisibleSection as VisibleSection
+					).id;
 				}
 			}
 		};

@@ -11,7 +11,9 @@
 		"dev:clean": "npm run clean && npm run dev"
 	},
 	"dependencies": {
+		"apprentiemalin": "file:",
 		"autoprefixer": "^10.4.17",
+		"critters": "^0.0.25",
 		"framer-motion": "^11.18.2",
 		"next": "^14.2.2",
 		"postcss": "^8.4.35",
@@ -25,8 +27,8 @@
 		"@types/node": "^20.11.25",
 		"@types/react": "^18.2.64",
 		"@types/react-dom": "^18.2.21",
-		"@typescript-eslint/eslint-plugin": "^7.1.0",
-		"@typescript-eslint/parser": "^7.1.0",
+		"@typescript-eslint/eslint-plugin": "^8.31.1",
+		"@typescript-eslint/parser": "^8.31.1",
 		"eslint": "^8.57.0",
 		"eslint-config-next": "^14.2.2",
 		"rimraf": "^5.0.5",

@@ -73,14 +73,14 @@ const Header = () => {
 			'get-started',
 		].filter(Boolean);
 
-		const observerCallback: IntersectionObserverCallback = (entries) => {
-			let mostVisibleSection: VisibleSection | null = null;
+		const observerCallback = (entries: IntersectionObserverEntry[]) => {
+			let mostVisibleSection: { id: string; ratio: number } | null = null;
 
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					if (
 						!mostVisibleSection ||
-						entry.intersectionRatio > (mostVisibleSection?.ratio || 0)
+						entry.intersectionRatio > mostVisibleSection.ratio
 					) {
 						mostVisibleSection = {
 							id: entry.target.id,

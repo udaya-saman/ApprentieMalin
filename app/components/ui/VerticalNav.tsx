@@ -177,6 +177,11 @@ const navItems = [
 	},
 ];
 
+interface SectionVisibility {
+	id: string;
+	visibility: number;
+}
+
 const VerticalNav = () => {
 	const [activeSection, setActiveSection] = useState('hero');
 	const [isWhiteBackground, setIsWhiteBackground] = useState(false);
@@ -198,54 +203,35 @@ const VerticalNav = () => {
 			attributeFilter: ['class'],
 		});
 
-		return () => observer.disconnect();
-	}, []);
-
-	useEffect(() => {
-		const checkBackground = (element: Element | null) => {
+		const checkBackground = (element: HTMLElement | null): boolean => {
 			if (!element) return false;
-
-			const section = element as HTMLElement;
-			const computedStyle = window.getComputedStyle(section);
-			const bgColor = computedStyle.backgroundColor;
-			const bgImage = computedStyle.backgroundImage;
-
+			const bgColor = window.getComputedStyle(element).backgroundColor;
 			return (
-				section.classList.contains('section-white') ||
-				section.dataset.variant === 'white' ||
-				bgColor === 'rgb(255, 255, 255)' ||
-				bgColor === '#ffffff' ||
-				bgColor === '#fff' ||
-				bgColor === 'rgba(255, 255, 255, 1)' ||
-				bgImage.includes('to-white') ||
-				section.classList.contains('bg-white') ||
-				section.classList.contains('bg-gray-50') ||
-				section.classList.contains('bg-slate-50')
+				bgColor === 'rgb(255, 255, 255)' || bgColor === 'rgba(255, 255, 255, 1)'
 			);
 		};
 
-		const calculateVisibility = (element: Element): number => {
+		const calculateVisibility = (element: HTMLElement): number => {
 			const rect = element.getBoundingClientRect();
 			const windowHeight = window.innerHeight;
-			const headerHeight = 60; // Account for fixed header
 
-			// If the element is not in view at all
-			if (rect.bottom < headerHeight || rect.top > windowHeight) {
+			// If the element is not visible at all
+			if (rect.bottom < 0 || rect.top > windowHeight) {
 				return 0;
 			}
 
-			// Calculate how much of the element is visible, accounting for header
-			const visibleTop = Math.max(rect.top, headerHeight);
-			const visibleBottom = Math.min(rect.bottom, windowHeight);
+			// Calculate the visible height of the element
+			const visibleTop = Math.max(0, rect.top);
+			const visibleBottom = Math.min(windowHeight, rect.bottom);
 			const visibleHeight = visibleBottom - visibleTop;
-			const elementHeight = rect.height;
 
-			return visibleHeight / elementHeight;
+			// Return the ratio of visible height to total height
+			return visibleHeight / rect.height;
 		};
 
 		const handleScroll = () => {
 			let maxVisibility = 0;
-			let mostVisibleSection = null;
+			let mostVisibleSection: HTMLElement | null = null;
 
 			navItems.forEach(({ id }) => {
 				const section = document.getElementById(id);

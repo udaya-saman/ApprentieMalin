@@ -80,7 +80,7 @@ const Header = () => {
 				if (entry.isIntersecting) {
 					if (
 						!mostVisibleSection ||
-						entry.intersectionRatio > mostVisibleSection.ratio
+						entry.intersectionRatio > (mostVisibleSection?.ratio || 0)
 					) {
 						mostVisibleSection = {
 							id: entry.target.id,
@@ -255,7 +255,8 @@ const Header = () => {
 					: 'bg-transparent py-6'
 			}`}
 			style={{
-				transitionProperty: 'background-color, backdrop-filter, box-shadow, padding',
+				transitionProperty:
+					'background-color, backdrop-filter, box-shadow, padding',
 			}}>
 			<div className='container mx-auto px-4 max-w-7xl'>
 				<div className='flex items-center justify-between'>
